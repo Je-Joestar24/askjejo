@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  backend: # Laravel
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: laravel_app_askjejo
+    volumes:
+      - ./backend:/var/www
+    depends_on:
+      - db
+    ports:
+      - "9000:9000" # PHP-FPM port (Nginx will use this internally)
+
+  frontend:
+    platform: linux/amd64
+    build:
+      context: ./frontend
+    container_name: vue_app_askjejo
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - vue_node_modules:/app/node_modules
+    working_dir: /app
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: true
+      WATCHPACK_POLLING: true
+      CHOKIDAR_INTERVAL: 1000
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+  db:
+    image: postgres:15
+    container_name: postgres_db_askjejo
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: askjejo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  vendor-data:
+  vue_node_modules:

@@ -1,0 +1,29 @@
+# Base PHP CLI image
+FROM php:8.2-cli
+
+RUN apt-get update && \
+    apt-get install -y libpq-dev zip unzip git curl libzip-dev && \
+    docker-php-ext-install pdo pdo_pgsql zip
+
+WORKDIR /var/www
+
+# Install Composer globally
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy all app files first (including artisan)
+COPY . .
+
+# Install PHP dependencies (you can skip --no-dev during development)
+RUN composer install --no-dev --no-scripts --optimize-autoloader --ignore-platform-reqs
+
+# Ensure bootstrap/cache directory exists and is clean
+RUN mkdir -p bootstrap/cache && rm -f bootstrap/cache/*
+
+# Now run artisan commands - artisan file exists
+RUN php artisan package:discover --ansi
+RUN php artisan key:generate --ansi
+
+EXPOSE 8000
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]
