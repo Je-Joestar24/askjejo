@@ -8,6 +8,7 @@ services:
     container_name: laravel_app_askjejo
     volumes:
       - ./backend:/var/www
+      - vendor-data:/var/www/vendor
     depends_on:
       - db
     ports:
