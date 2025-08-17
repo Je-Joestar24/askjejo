@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\TetController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+
+Route::post('/test', function () {
     return response()->json([
         'laravel_version' => app()->version(),
     ]);
 });
+

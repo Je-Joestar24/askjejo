@@ -1,3 +1,3 @@
 <template>
-    Features section
+    
 </template>

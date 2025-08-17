@@ -1,14 +1,12 @@
 :root {
 
   /* Text Colors */
-  --text-dark: #1a2238;
-  /* deep blue-black */
-  --text-light: #f5f6fa;
-  /* off-white */
+  --text-dark: #1a2530; /* deep muted navy */
+  --text-light: #f6f9fc; /* soft off-white */
 
   /* Shadows */
-  --shadow-light: rgba(30, 42, 73, 0.08);
-  --shadow-dark: rgba(30, 42, 73, 0.18);
+  --shadow-light: rgba(26, 37, 48, 0.06);
+  --shadow-dark: rgba(26, 37, 48, 0.15);
   --shadow-shine: rgba(255, 255, 255, 0.08);
 
   /* Container widths */
@@ -17,42 +15,35 @@
   --container-md: 768px;
   --container-sm: 576px;
 
-  /* Modern Blue Theme */
-  --theme-primary: #304ffe;
-  /* deep blue */
-  --theme-secondary: #00bfae;
-  /* teal accent */
-  --theme-accent: #ffb300;
-  /* gold accent */
-  --theme-bg: #f5f6fa;
-  /* soft background */
-  --theme-btn: #304ffe;
-  /* button color */
-  --theme-btn-hover: #1e40af;
-  /* button hover (darker blue) */
-  --theme-globe: #e3e9f7;
-  /* subtle blue accent */
-  --brand: #b388ff;
+  /* Blue Pastel Theme (Light) - Updated for better contrast */
+  --theme-primary: #2563eb; /* deeper blue for better contrast */
+  --theme-secondary: #3b82f6; /* medium blue */
+  --theme-accent: #f59e0b; /* warm amber for better visibility */
+  --theme-bg: #ffffff; /* pure white background */
+  --theme-btn: #2563eb; /* button color */
+  --theme-btn-hover: #1d4ed8; /* darker blue on hover */
+  --theme-globe: #dbeafe; /* light blue tint */
+  --brand: #2563eb; /* brand color */
 
   /* Project Card Theme */
   --card-radius: 1.5rem;
   --card-shadow: 0 4px 32px var(--shadow-dark);
   --card-shadow-hover: 0 8px 40px var(--shadow-dark);
-  --modal-overlay: rgba(24, 24, 36, 0.85);
-  --project-card-bg: rgba(35, 36, 58, 0.98);
+  --modal-overlay: rgba(20, 30, 48, 0.85);
+  --project-card-bg: rgba(28, 40, 58, 0.96);
 
-  /* Minimalist. Theme (Light) */
-  --min-bg: #f8f7fa;
-  --min-surface: #fff;
-  --min-primary: #b388ff;
-  --min-accent: #7c4dff;
-  --min-text-main: #2d225a;
-  --min-text-light: #a89cc8;
-  --min-border: #e0e0e0;
-  --min-shadow: 0 2px 16px rgba(179, 136, 255, 0.08);
-  --min-btn: #b388ff;
-  --min-btn-hover: #7c4dff;
-  --min-glow: rgba(179, 136, 255, 0.12);
+  /* Minimalist Theme (Light) - Updated for better contrast */
+  --min-bg: #ffffff;
+  --min-surface: #f8fafc;
+  --min-primary: #2563eb;
+  --min-accent: #1d4ed8;
+  --min-text-main: #0f172a; /* darker text for better contrast */
+  --min-text-light: #475569; /* medium gray for secondary text */
+  --min-border: #e2e8f0;
+  --min-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
+  --min-btn: #2563eb;
+  --min-btn-hover: #1d4ed8;
+  --min-glow: rgba(37, 99, 235, 0.12);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -99,36 +90,37 @@ button {
 }
 
 .footer__brand span {
-  color: var(--brand) !important;
+  color: var(--brand-violet) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --theme-primary: #7c4dff;
-    --theme-secondary: #2d225a;
-    --theme-accent: #b388ff;
-    --theme-bg: #18122b;
-    --theme-btn: #7c4dff;
-    --theme-btn-hover: #b388ff;
-    --theme-card-bg: #221a3a;
-    --theme-border: #3a2d5c;
+    /* Blue Pastel Theme (Dark) */
+    --theme-primary: #91c4ff; /* lighter blue for contrast */
+    --theme-secondary: #4e7fbf; /* muted steel blue */
+    --theme-accent: #ffd88c; /* pastel gold stays */
+    --theme-bg: #101a27; /* deep navy background */
+    --theme-btn: #91c4ff;
+    --theme-btn-hover: #7bb3ff;
+    --theme-card-bg: #1b2a3d;
+    --theme-border: #2d3d50;
     --theme-radius: 1.25rem;
-    --theme-shadow: 0 2px 16px rgba(124, 77, 255, 0.12);
-    --theme-text-main: #ede7f6;
-    --theme-text-light: #b388ff;
-    --theme-hero-glow: rgba(124, 77, 255, 0.18);
+    --theme-shadow: 0 2px 16px rgba(123, 179, 255, 0.12);
+    --theme-text-main: #eaf3fc;
+    --theme-text-light: #91c4ff;
+    --theme-hero-glow: rgba(123, 179, 255, 0.18);
 
     /* Minimalist Theme (Dark) */
-    --min-bg: #18122b;
-    --min-surface: #221a3a;
-    --min-primary: #7c4dff;
-    --min-accent: #b388ff;
-    --min-text-main: #ede7f6;
-    --min-text-light: #b388ff;
-    --min-border: #3a2d5c;
-    --min-shadow: 0 2px 16px rgba(124, 77, 255, 0.12);
-    --min-btn: #7c4dff;
-    --min-btn-hover: #b388ff;
-    --min-glow: rgba(124, 77, 255, 0.18);
+    --min-bg: #101a27;
+    --min-surface: #1b2a3d;
+    --min-primary: #91c4ff;
+    --min-accent: #7bb3ff;
+    --min-text-main: #eaf3fc;
+    --min-text-light: #91c4ff;
+    --min-border: #2d3d50;
+    --min-shadow: 0 2px 16px rgba(123, 179, 255, 0.12);
+    --min-btn: #91c4ff;
+    --min-btn-hover: #7bb3ff;
+    --min-glow: rgba(123, 179, 255, 0.18);
   }
 }
