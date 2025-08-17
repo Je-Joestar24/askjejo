@@ -1,0 +1,426 @@
+/* CTA Section Styles */
+.cta {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-bg-secondary) 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.cta__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--theme-glow-heavy) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: glowPulse 4s ease-in-out infinite;
+  filter: blur(40px);
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.cta__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--theme-glow) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, var(--theme-glow) 0%, transparent 50%);
+  opacity: 0.4;
+  animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.cta__container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Section */
+.cta__header {
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta__eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--theme-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.cta__title {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  color: var(--theme-text);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.cta__title-accent {
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.cta__title-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--theme-primary), var(--theme-accent));
+  border-radius: 2px;
+  transform: scaleX(0);
+  animation: underlineExpand 0.8s ease-out 1s forwards;
+}
+
+@keyframes underlineExpand {
+  to { transform: scaleX(1); }
+}
+
+.cta__description {
+  font-size: 1.25rem;
+  color: var(--theme-text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+
+/* Call to Action Buttons */
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.cta__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: var(--theme-card-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--theme-transition);
+  position: relative;
+  overflow: hidden;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.cta__btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta__btn:hover::before {
+  left: 100%;
+}
+
+.cta__btn--primary {
+  background: var(--theme-bg-card);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+  box-shadow: var(--theme-shadow);
+}
+
+.cta__btn--primary:hover {
+  background: var(--theme-bg-overlay);
+  border-color: var(--theme-border-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--theme-shadow-lg), var(--theme-shadow-shine);
+}
+
+.cta__btn--secondary {
+  background: transparent;
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+.cta__btn--secondary:hover {
+  background: var(--theme-bg-card);
+  border-color: var(--theme-border-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--theme-shadow-lg), var(--theme-shadow-shine);
+}
+
+.cta__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-primary);
+  transition: var(--theme-transition);
+}
+
+.cta__btn:hover .cta__btn-icon {
+  transform: scale(1.1) rotate(15deg);
+  color: var(--theme-accent);
+}
+
+/* Additional Information */
+.cta__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.8s forwards;
+}
+
+.cta__info-item {
+  font-size: 0.875rem;
+  color: var(--theme-text-muted);
+  font-weight: 500;
+}
+
+.cta__info-separator {
+  color: var(--theme-text-muted);
+  opacity: 0.5;
+}
+
+/* Trust Indicators */
+.cta__trust {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 1s forwards;
+}
+
+.cta__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--theme-text-secondary);
+  font-weight: 500;
+}
+
+.cta__trust-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--theme-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--theme-transition);
+}
+
+.cta__trust-item:hover .cta__trust-icon {
+  transform: scale(1.1);
+  color: var(--theme-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cta {
+    padding: 5rem 0;
+  }
+  
+  .cta__glow {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta {
+    padding: 4rem 0;
+  }
+  
+  .cta__container {
+    padding: 0 1rem;
+  }
+  
+  .cta__title {
+    font-size: 2.5rem;
+  }
+  
+  .cta__description {
+    font-size: 1.125rem;
+  }
+  
+  .cta__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta__btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .cta__trust {
+    gap: 1.5rem;
+  }
+  
+  .cta__glow {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta {
+    padding: 3rem 0;
+  }
+  
+  .cta__title {
+    font-size: 2rem;
+  }
+  
+  .cta__description {
+    font-size: 1rem;
+  }
+  
+  .cta__btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .cta__info {
+    gap: 0.75rem;
+  }
+  
+  .cta__trust {
+    gap: 1rem;
+  }
+  
+  .cta__glow {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .cta {
+    background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-bg-secondary) 100%);
+  }
+  
+  .cta__btn--primary {
+    background: var(--theme-bg-card);
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+  }
+  
+  .cta__btn--primary:hover {
+    background: var(--theme-bg-overlay);
+    border-color: var(--theme-border-accent);
+  }
+  
+  .cta__btn--secondary {
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+  }
+  
+  .cta__btn--secondary:hover {
+    background: var(--theme-bg-card);
+    border-color: var(--theme-border-accent);
+  }
+}
+
+/* Focus States for Accessibility */
+.cta__btn:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.cta__btn:focus::before {
+  left: 100%;
+}
+
+/* Hover Effects Enhancement */
+.cta__btn:hover {
+  transform: translateY(-2px);
+}
+
+.cta__btn:active {
+  transform: translateY(0);
+}
+
+/* Animation Delays for Elements */
+.cta__eyebrow { animation-delay: 0.2s; }
+.cta__title { animation-delay: 0.3s; }
+.cta__description { animation-delay: 0.5s; }
+.cta__actions { animation-delay: 0.6s; }
+.cta__info { animation-delay: 0.8s; }
+.cta__trust { animation-delay: 1s; }

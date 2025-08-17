@@ -1,0 +1,56 @@
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+    }
+
+    .hero__container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .hero__description {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero__actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .hero__container {
+        padding: 0 1rem;
+    }
+
+    .hero__description {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hero__tagline {
+        font-size: 1.125rem;
+    }
+
+    .hero__description {
+        padding: 1rem;
+    }
+
+    .hero__tagline {
+        font-size: 1.125rem;
+    }
+}

@@ -1,0 +1,45 @@
+.hero__description-icon {
+    color: var(--theme-accent);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.hero__shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hero__shape {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--theme-glow);
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero__shape--circle {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 0s;
+}
+
+.hero__shape--hexagon {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 25%;
+    animation-delay: 2s;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hero__shape--small {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 40%;
+    animation-delay: 4s;
+}

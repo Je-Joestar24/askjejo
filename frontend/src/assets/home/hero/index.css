@@ -1,0 +1,52 @@
+@import './actions.css';
+@import './chat.css';
+@import './shapes.css';
+@import './texts.css';
+@import './animations.css';
+@import './responsive.css';
+
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-primary) 100%);
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero__grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.3;
+}
+
+.hero__container {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}

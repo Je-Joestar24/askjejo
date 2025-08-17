@@ -1,49 +1,120 @@
+@import './home/index.css';
+
 :root {
-
-  /* Text Colors */
-  --text-dark: #1a2530; /* deep muted navy */
-  --text-light: #f6f9fc; /* soft off-white */
-
-  /* Shadows */
-  --shadow-light: rgba(26, 37, 48, 0.06);
-  --shadow-dark: rgba(26, 37, 48, 0.15);
-  --shadow-shine: rgba(255, 255, 255, 0.08);
-
   /* Container widths */
   --container-xl: 1400px;
   --container-lg: 1200px;
   --container-md: 768px;
   --container-sm: 576px;
 
-  /* Blue Pastel Theme (Light) - Updated for better contrast */
-  --theme-primary: #2563eb; /* deeper blue for better contrast */
-  --theme-secondary: #3b82f6; /* medium blue */
-  --theme-accent: #f59e0b; /* warm amber for better visibility */
-  --theme-bg: #ffffff; /* pure white background */
-  --theme-btn: #2563eb; /* button color */
-  --theme-btn-hover: #1d4ed8; /* darker blue on hover */
-  --theme-globe: #dbeafe; /* light blue tint */
-  --brand: #2563eb; /* brand color */
+  /* Theme Colors - Light Mode */
+  --theme-primary: #2563eb;
+  --theme-secondary: #3b82f6;
+  --theme-accent: #f59e0b;
+  --theme-success: #10b981;
+  --theme-warning: #f59e0b;
+  --theme-error: #ef4444;
+  
+  /* Background Colors */
+  --theme-bg: #ffffff;
+  --theme-bg-secondary: #f8fafc;
+  --theme-bg-tertiary: #f1f5f9;
+  --theme-bg-card: rgba(255, 255, 255, 0.8);
+  --theme-bg-overlay: rgba(255, 255, 255, 0.9);
+  
+  /* Text Colors */
+  --theme-text: #0f172a;
+  --theme-text-secondary: #475569;
+  --theme-text-muted: #64748b;
+  --theme-text-inverse: #ffffff;
+  
+  /* Border Colors */
+  --theme-border: #e2e8f0;
+  --theme-border-secondary: #cbd5e1;
+  --theme-border-accent: rgba(37, 99, 235, 0.2);
+  
+  /* Shadow System */
+  --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --theme-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --theme-shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --theme-shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --theme-shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+  --theme-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --theme-shadow-shine: 0 0 20px rgba(37, 99, 235, 0.15);
+  --theme-shadow-glow: 0 0 30px rgba(37, 99, 235, 0.2);
+  
+  /* Button Colors */
+  --theme-btn: var(--theme-primary);
+  --theme-btn-hover: #1d4ed8;
+  --theme-btn-secondary: transparent;
+  --theme-btn-secondary-hover: var(--theme-primary);
+  
+  /* Card System */
+  --theme-card-radius: 1.5rem;
+  --theme-card-shadow: var(--theme-shadow);
+  --theme-card-shadow-hover: var(--theme-shadow-lg);
+  
+  /* Special Effects */
+  --theme-blur: blur(15px);
+  --theme-blur-light: blur(10px);
+  --theme-glow: rgba(37, 99, 235, 0.1);
+  --theme-glow-heavy: rgba(37, 99, 235, 0.2);
+  
+  /* Animation Variables */
+  --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --theme-transition-fast: all 0.15s ease;
+  --theme-transition-slow: all 0.5s ease;
+}
 
-  /* Project Card Theme */
-  --card-radius: 1.5rem;
-  --card-shadow: 0 4px 32px var(--shadow-dark);
-  --card-shadow-hover: 0 8px 40px var(--shadow-dark);
-  --modal-overlay: rgba(20, 30, 48, 0.85);
-  --project-card-bg: rgba(28, 40, 58, 0.96);
-
-  /* Minimalist Theme (Light) - Updated for better contrast */
-  --min-bg: #ffffff;
-  --min-surface: #f8fafc;
-  --min-primary: #2563eb;
-  --min-accent: #1d4ed8;
-  --min-text-main: #0f172a; /* darker text for better contrast */
-  --min-text-light: #475569; /* medium gray for secondary text */
-  --min-border: #e2e8f0;
-  --min-shadow: 0 2px 16px rgba(37, 99, 235, 0.08);
-  --min-btn: #2563eb;
-  --min-btn-hover: #1d4ed8;
-  --min-glow: rgba(37, 99, 235, 0.12);
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Theme Colors - Dark Mode */
+    --theme-primary: #60a5fa;
+    --theme-secondary: #3b82f6;
+    --theme-accent: #fbbf24;
+    --theme-success: #34d399;
+    --theme-warning: #fbbf24;
+    --theme-error: #f87171;
+    
+    /* Background Colors */
+    --theme-bg: #0f172a;
+    --theme-bg-secondary: #1e293b;
+    --theme-bg-tertiary: #334155;
+    --theme-bg-card: rgba(30, 41, 59, 0.8);
+    --theme-bg-overlay: rgba(15, 23, 42, 0.9);
+    
+    /* Text Colors */
+    --theme-text: #f8fafc;
+    --theme-text-secondary: #cbd5e1;
+    --theme-text-muted: #94a3b8;
+    --theme-text-inverse: #0f172a;
+    
+    /* Border Colors */
+    --theme-border: #334155;
+    --theme-border-secondary: #475569;
+    --theme-border-accent: rgba(96, 165, 250, 0.3);
+    
+    /* Shadow System */
+    --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --theme-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --theme-shadow-md: 0 10px 15px rgba(0, 0, 0, 0.3);
+    --theme-shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.4);
+    --theme-shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.5);
+    --theme-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --theme-shadow-shine: 0 0 20px rgba(96, 165, 250, 0.2);
+    --theme-shadow-glow: 0 0 30px rgba(96, 165, 250, 0.3);
+    
+    /* Button Colors */
+    --theme-btn: var(--theme-primary);
+    --theme-btn-hover: #3b82f6;
+    --theme-btn-secondary: transparent;
+    --theme-btn-secondary-hover: var(--theme-primary);
+    
+    /* Special Effects */
+    --theme-glow: rgba(96, 165, 250, 0.15);
+    --theme-glow-heavy: rgba(96, 165, 250, 0.25);
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -54,12 +125,10 @@
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
-/* basic reset */
+/* Basic reset */
 * {
   margin: 0;
   padding: 0;
@@ -68,9 +137,9 @@
 
 body {
   font-family: "Poppins", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
-  background: var(--about-bg, #fff);
   background-color: var(--theme-bg);
-  color: var(--text-dark);
+  color: var(--theme-text);
+  transition: var(--theme-transition);
 }
 
 a {
@@ -78,11 +147,9 @@ a {
   color: inherit;
 }
 
-ul,
-li {
+ul, li {
   list-style: none;
 }
-
 
 button {
   border: none;
@@ -90,37 +157,5 @@ button {
 }
 
 .footer__brand span {
-  color: var(--brand-violet) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Blue Pastel Theme (Dark) */
-    --theme-primary: #91c4ff; /* lighter blue for contrast */
-    --theme-secondary: #4e7fbf; /* muted steel blue */
-    --theme-accent: #ffd88c; /* pastel gold stays */
-    --theme-bg: #101a27; /* deep navy background */
-    --theme-btn: #91c4ff;
-    --theme-btn-hover: #7bb3ff;
-    --theme-card-bg: #1b2a3d;
-    --theme-border: #2d3d50;
-    --theme-radius: 1.25rem;
-    --theme-shadow: 0 2px 16px rgba(123, 179, 255, 0.12);
-    --theme-text-main: #eaf3fc;
-    --theme-text-light: #91c4ff;
-    --theme-hero-glow: rgba(123, 179, 255, 0.18);
-
-    /* Minimalist Theme (Dark) */
-    --min-bg: #101a27;
-    --min-surface: #1b2a3d;
-    --min-primary: #91c4ff;
-    --min-accent: #7bb3ff;
-    --min-text-main: #eaf3fc;
-    --min-text-light: #91c4ff;
-    --min-border: #2d3d50;
-    --min-shadow: 0 2px 16px rgba(123, 179, 255, 0.12);
-    --min-btn: #91c4ff;
-    --min-btn-hover: #7bb3ff;
-    --min-glow: rgba(123, 179, 255, 0.18);
-  }
+  color: var(--theme-primary) !important;
 }
