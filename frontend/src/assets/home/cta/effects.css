@@ -1,0 +1,43 @@
+/* Focus States for Accessibility */
+.cta__btn:focus {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+}
+
+.cta__btn:focus::before {
+    left: 100%;
+}
+
+/* Hover Effects Enhancement */
+.cta__btn:hover {
+    transform: translateY(-2px);
+}
+
+.cta__btn:active {
+    transform: translateY(0);
+}
+
+/* Animation Delays for Elements */
+.cta__eyebrow {
+    animation-delay: 0.2s;
+}
+
+.cta__title {
+    animation-delay: 0.3s;
+}
+
+.cta__description {
+    animation-delay: 0.5s;
+}
+
+.cta__actions {
+    animation-delay: 0.6s;
+}
+
+.cta__info {
+    animation-delay: 0.8s;
+}
+
+.cta__trust {
+    animation-delay: 1s;
+}

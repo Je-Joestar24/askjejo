@@ -1,0 +1,22 @@
+/* Additional Information */
+.cta__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.8s forwards;
+}
+
+.cta__info-item {
+    font-size: 0.875rem;
+    color: var(--theme-text-muted);
+    font-weight: 500;
+}
+
+.cta__info-separator {
+    color: var(--theme-text-muted);
+    opacity: 0.5;
+}

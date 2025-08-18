@@ -1,0 +1,85 @@
+/* Header Section */
+.cta__header {
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta__eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--theme-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.cta__title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    color: var(--theme-text);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.cta__title-accent {
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.cta__title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--theme-primary), var(--theme-accent));
+    border-radius: 2px;
+    transform: scaleX(0);
+    animation: underlineExpand 0.8s ease-out 1s forwards;
+}
+
+@keyframes underlineExpand {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.cta__description {
+    font-size: 1.25rem;
+    color: var(--theme-text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.5s forwards;
+}

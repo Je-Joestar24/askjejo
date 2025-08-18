@@ -1,0 +1,33 @@
+/* Trust Indicators */
+.cta__trust {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1s forwards;
+}
+
+.cta__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+    font-weight: 500;
+}
+
+.cta__trust-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--theme-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--theme-transition);
+}
+
+.cta__trust-item:hover .cta__trust-icon {
+    transform: scale(1.1);
+    color: var(--theme-accent);
+}

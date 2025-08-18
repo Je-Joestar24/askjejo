@@ -1,0 +1,80 @@
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .cta {
+        padding: 5rem 0;
+    }
+
+    .cta__glow {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta {
+        padding: 4rem 0;
+    }
+
+    .cta__container {
+        padding: 0 1rem;
+    }
+
+    .cta__title {
+        font-size: 2.5rem;
+    }
+
+    .cta__description {
+        font-size: 1.125rem;
+    }
+
+    .cta__actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta__btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cta__trust {
+        gap: 1.5rem;
+    }
+
+    .cta__glow {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta {
+        padding: 3rem 0;
+    }
+
+    .cta__title {
+        font-size: 2rem;
+    }
+
+    .cta__description {
+        font-size: 1rem;
+    }
+
+    .cta__btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .cta__info {
+        gap: 0.75rem;
+    }
+
+    .cta__trust {
+        gap: 1rem;
+    }
+
+    .cta__glow {
+        width: 300px;
+        height: 300px;
+    }
+}

@@ -1,0 +1,61 @@
+.cta__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.cta__glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--theme-glow-heavy) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: glowPulse 4s ease-in-out infinite;
+    filter: blur(40px);
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 1;
+    }
+}
+
+.cta__pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 25% 25%, var(--theme-glow) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, var(--theme-glow) 0%, transparent 50%);
+    opacity: 0.4;
+    animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
