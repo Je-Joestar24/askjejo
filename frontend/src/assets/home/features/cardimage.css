@@ -1,0 +1,27 @@
+/* Feature Card Image */
+.feature-card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.feature-card__image-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    background: var(--theme-bg-secondary);
+    border: 2px solid var(--theme-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-text-muted);
+    transition: var(--theme-transition);
+}
+
+.feature-card:hover .feature-card__image-placeholder {
+    background: var(--theme-bg-tertiary);
+    border-color: var(--theme-border-accent);
+    color: var(--theme-primary);
+    transform: scale(1.05);
+}

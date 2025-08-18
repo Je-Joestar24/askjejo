@@ -1,0 +1,63 @@
+/* Animation Delays for Cards */
+.feature-card:nth-child(1) {
+    animation: cardSlideIn 0.6s ease-out 0.3s forwards;
+}
+
+.feature-card:nth-child(2) {
+    animation: cardSlideIn 0.6s ease-out 0.4s forwards;
+}
+
+.feature-card:nth-child(3) {
+    animation: cardSlideIn 0.6s ease-out 0.5s forwards;
+}
+
+.feature-card:nth-child(4) {
+    animation: cardSlideIn 0.6s ease-out 0.6s forwards;
+}
+
+.feature-card:nth-child(5) {
+    animation: cardSlideIn 0.6s ease-out 0.7s forwards;
+}
+
+.feature-card:nth-child(6) {
+    animation: cardSlideIn 0.6s ease-out 0.8s forwards;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects Enhancement */
+.feature-card:hover .feature-card__icon svg {
+    animation: iconPulse 0.6s ease-in-out;
+}
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Focus States for Accessibility */
+.feature-card:focus-within {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+}
+
+.feature-card:focus-within::before {
+    transform: scaleX(1);
+}

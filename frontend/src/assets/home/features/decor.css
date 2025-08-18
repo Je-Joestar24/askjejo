@@ -1,0 +1,34 @@
+.features__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.features__pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--theme-glow) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--theme-glow) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--theme-glow-heavy) 0%, transparent 50%);
+    opacity: 0.6;
+    animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}

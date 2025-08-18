@@ -1,0 +1,24 @@
+/* Feature Card Icon */
+.feature-card__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-card__icon-bg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--theme-shadow-shine);
+    transition: var(--theme-transition);
+}
+
+.feature-card:hover .feature-card__icon-bg {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--theme-shadow-glow);
+}
