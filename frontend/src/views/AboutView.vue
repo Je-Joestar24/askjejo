@@ -1,9 +1,9 @@
 <template>
     <Intro/>
-    <MissionVission/>
+    <MissionVision/>
 </template>
 
 <script setup>
 import Intro from '@/components/about/Intro.vue';
-import MissionVission from '@/components/about/MissionVission.vue';
+import MissionVision from '@/components/about/MissionVision.vue';
 </script>
