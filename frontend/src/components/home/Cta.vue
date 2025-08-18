@@ -7,5 +7,5 @@
 
 <script setup>
 import Background from './Cta/Background.vue';
-import MainContents from './Cta/MainConents.vue';
+import MainContents from './Cta/MainContents.vue';
 </script>
