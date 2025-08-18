@@ -1,0 +1,69 @@
+/* Decorative orbits and dots */
+.intro__decor {
+    position: absolute;
+    top: -10%;
+    left: -5%;
+    right: -5%;
+    bottom: -10%;
+    pointer-events: none;
+    color: var(--theme-primary);
+}
+
+.intro__orbit {
+    position: absolute;
+    opacity: 0.5;
+    transform-origin: center;
+    animation: introOrbit 28s linear infinite;
+}
+
+.intro__orbit--lg {
+    top: 10%;
+    left: -40px;
+    width: 280px;
+    height: 280px;
+    opacity: .08;
+}
+
+.intro__orbit--sm {
+    bottom: 8%;
+    right: 4%;
+    width: 180px;
+    height: 180px;
+    opacity: .12;
+    animation-duration: 36s;
+}
+
+@keyframes introOrbit {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.intro__dots {
+    position: absolute;
+    top: 20%;
+    right: 8%;
+    width: 140px;
+    height: 140px;
+    background-image: radial-gradient(var(--theme-glow) 1px, transparent 1px);
+    background-size: 12px 12px;
+    opacity: .6;
+    filter: blur(.4px);
+    animation: introDotsFloat 12s ease-in-out infinite;
+}
+
+@keyframes introDotsFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}

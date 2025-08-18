@@ -9,5 +9,4 @@
 import MainContentsLeft from './MainContentsLeft.vue';
 import MainContentsRight from './MainContentsRight.vue';
 
-
 </script>

@@ -1,0 +1,52 @@
+/* Right column visual */
+.intro__media {
+    position: relative;
+    justify-self: center;
+    width: min(520px, 100%);
+    opacity: 0;
+    animation: introSlideIn .8s ease-out .25s forwards;
+}
+
+@keyframes introSlideIn {
+    from {
+        transform: translateY(18px);
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.intro__device {
+    position: relative;
+    border-radius: 28px;
+    background: var(--theme-bg-card);
+    border: 1px solid var(--theme-border);
+    box-shadow: var(--theme-shadow-lg);
+    padding: 22px 14px 14px;
+}
+
+.intro__notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 96px;
+    height: 18px;
+    background: var(--theme-bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--theme-border);
+}
+
+.intro__screen {
+    background: var(--theme-bg);
+    border: 1px solid var(--theme-border);
+    border-radius: 18px;
+    padding: 14px;
+    height: 440px;
+    overflow: hidden;
+    display: grid;
+    align-content: start;
+    gap: .5rem;
+}

@@ -1,0 +1,24 @@
+.intro__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 520px;
+}
+
+.intro__stat {
+    background: var(--theme-bg-card);
+    border: 1px solid var(--theme-border);
+    border-radius: 1rem;
+    padding: .85rem 1rem;
+    text-align: center;
+}
+
+.intro__stat-value {
+    font-weight: 800;
+    color: var(--theme-primary);
+}
+
+.intro__stat-label {
+    color: var(--theme-text-secondary);
+    font-size: .875rem;
+}
