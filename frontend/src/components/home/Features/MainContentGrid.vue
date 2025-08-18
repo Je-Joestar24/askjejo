@@ -1,8 +1,7 @@
 <template>
     <!-- Features Grid -->
     <div class="features__grid">
-        <FeatureCard v-for="(feature, index) in features" :key="index" :title="feature.title"
-            :description="feature.description" :icon="feature.icon" :image="feature.image" />
+        <FeatureCard v-for="(feature, index) in features" :key="index" :payload="feature" />
     </div>
 </template>
 
