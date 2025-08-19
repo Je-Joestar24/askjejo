@@ -1,15 +1,19 @@
 <template>
     <!-- Navigation links -->
     <ul class="header__nav-list" role="list">
-        <li class="header__nav-item">
-            <a href="/" class="header__nav-link header__nav-link--active" aria-current="page">
-                Home
-            </a>
-        </li>
-        <li class="header__nav-item">
-            <a href="/about" class="header__nav-link">
-                About
-            </a>
+        <li v-for="item in navItems" :key="item.to" class="header__nav-item">
+            <RouterLink :to="item.to" class="header__nav-link" active-class="header__nav-link--active">
+                {{ item.label }}
+            </RouterLink>
         </li>
     </ul>
 </template>
+
+<script setup>
+import { RouterLink } from 'vue-router'
+
+const navItems = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+]
+</script>
