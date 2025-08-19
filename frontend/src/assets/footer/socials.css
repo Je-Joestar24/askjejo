@@ -1,0 +1,26 @@
+/* Social icons */
+.footer__social {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.footer__icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-primary);
+    background: transparent;
+    border: 1px solid var(--theme-border);
+    border-radius: 8px;
+    transition: var(--theme-transition);
+}
+
+.footer__icon:hover {
+    background: var(--theme-primary);
+    color: var(--theme-text-inverse);
+    transform: translateY(-2px);
+    box-shadow: var(--theme-shadow-glow);
+}

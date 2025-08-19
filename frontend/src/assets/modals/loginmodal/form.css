@@ -1,0 +1,36 @@
+.loginmodal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+.loginmodal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.loginmodal__label {
+    font-size: 1rem;
+    color: var(--theme-text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+}
+
+.loginmodal__input {
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
+    border: 1.5px solid var(--theme-border);
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text);
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: var(--theme-shadow-sm);
+}
+
+.loginmodal__input:focus {
+    border: 1.5px solid var(--theme-primary);
+    box-shadow: 0 2px 12px var(--theme-globe);
+}
