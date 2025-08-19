@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router'
 import {onMounted} from 'vue'
 import api from '@/config/api'
 import Navigation from './components/header/Navigation.vue';
-import Footer from './components/footer/footer.vue';
+import FooterV from './components/footer/footer.vue';
 
 const callApi =  async () => {
   try {
@@ -27,5 +27,5 @@ onMounted(callApi)
 <template>
   <Navigation/>
   <RouterView />
-  <Footer />
+  <FooterV />
 </template>

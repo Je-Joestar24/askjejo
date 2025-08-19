@@ -10,6 +10,4 @@
 import Brand from './Brand.vue';
 import Navs from './Navs.vue';
 import Socials from './Socials.vue';
-
-
 </script>
