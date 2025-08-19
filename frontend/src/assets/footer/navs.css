@@ -1,0 +1,66 @@
+/* Center nav */
+.footer__nav {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__nav-glow {
+    position: absolute;
+    width: min(520px, 70%);
+    height: 56px;
+    border-radius: 48px;
+    background: var(--theme-primary);
+    opacity: 0.14;
+    filter: blur(24px);
+    box-shadow: var(--theme-shadow-glow);
+    pointer-events: none;
+    animation: footerGlow 6s ease-in-out infinite;
+}
+
+.footer__links {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 1.5rem;
+    background: var(--theme-bg-secondary);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--theme-card-shadow);
+    z-index: 1;
+}
+
+.footer__link {
+    position: relative;
+    color: var(--theme-text-secondary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--theme-transition);
+}
+
+.footer__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--theme-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.footer__link:hover {
+    color: var(--theme-text);
+}
+
+.footer__link:hover::after {
+    transform: scaleX(1);
+}

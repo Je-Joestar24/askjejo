@@ -1,0 +1,24 @@
+/* Brand */
+.footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--theme-text);
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--theme-transition);
+}
+
+.footer__brand:hover {
+    transform: translateY(-1px);
+}
+
+.footer__logo {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+}
+
+.footer__brand-text {
+    letter-spacing: 0.06em;
+}

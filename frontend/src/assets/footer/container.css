@@ -1,0 +1,17 @@
+.footer {
+    background: var(--theme-bg);
+    border-top: 1px solid var(--theme-border);
+    padding: 2rem 0 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer__container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
