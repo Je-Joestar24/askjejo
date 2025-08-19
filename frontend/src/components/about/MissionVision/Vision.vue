@@ -1,18 +1,5 @@
 <template>
-    <!-- Vision Illustration -->
-    <figure class="mv__tile mv__tile--art" role="img" aria-label="Binoculars illustration">
-        <svg class="mv__svg mv__svg--binoculars" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="none"
-            aria-hidden="true" focusable="false">
-            <g stroke="currentColor" stroke-width="14" opacity="0.14">
-                <circle cx="170" cy="300" r="72" />
-                <circle cx="342" cy="300" r="72" />
-                <path d="M98 300h52m212 0h52" />
-                <path d="M208 300h96" />
-                <path d="M144 228c40-34 184-34 224 0" />
-            </g>
-        </svg>
-    </figure>
-
+    <VisionFigure/>
     <!-- Vision (content) -->
     <article class="mv__tile mv__tile--content mv__tile--vision" role="listitem" aria-label="Our vision">
         <header class="mv__header">
@@ -26,3 +13,7 @@
         </p>
     </article>
 </template>
+
+<script setup>
+import VisionFigure from '@/components/icons/about/VisionFigure.vue';
+</script>
