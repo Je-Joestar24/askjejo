@@ -1,0 +1,247 @@
+.loginmodal__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1200;
+    background: var(--theme-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px) saturate(1.2);
+    animation: loginmodal-fadein 0.5s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+@keyframes loginmodal-fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.loginmodal__modal {
+    background: var(--theme-bg-card);
+    border-radius: 1.25rem;
+    box-shadow: var(--theme-shadow-lg);
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-width: 320px;
+    max-width: 95vw;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    animation: loginmodal-pop 0.7s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+@keyframes loginmodal-pop {
+    0% {
+        transform: scale(0.85) translateY(40px);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.05) translateY(-8px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+.loginmodal__close {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    background: none;
+    color: var(--theme-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 2;
+    line-height: 1;
+    padding: 0.2rem 0.5rem;
+}
+
+.loginmodal__close:hover,
+.loginmodal__close:focus {
+    color: var(--theme-accent);
+}
+
+.loginmodal__header {
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+.loginmodal__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--theme-primary);
+    letter-spacing: -1px;
+}
+
+.loginmodal__message {
+    min-height: 1.5em;
+    color: var(--theme-accent);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    transition: color 0.3s;
+}
+
+.loginmodal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+.loginmodal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.loginmodal__label {
+    font-size: 1rem;
+    color: var(--theme-text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+}
+
+.loginmodal__input {
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
+    border: 1.5px solid var(--theme-border);
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text);
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: var(--theme-shadow-sm);
+}
+
+.loginmodal__input:focus {
+    border: 1.5px solid var(--theme-primary);
+    box-shadow: 0 2px 12px var(--theme-globe);
+}
+
+.loginmodal__button {
+    margin-top: 0.5rem;
+    padding: 0.8rem 0;
+    border-radius: 0.8rem;
+    background: var(--theme-btn);
+    color: var(--theme-text-inverse);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: var(--theme-shadow);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    border: none;
+    outline: none;
+    width: 100%;
+    animation: loginmodal-btn-pop 1.2s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+.loginmodal__button:hover,
+.loginmodal__button:focus {
+    background: var(--theme-btn-hover);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: var(--theme-shadow-glow);
+}
+
+@keyframes loginmodal-btn-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loginmodal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--min-violet-text-light);
+    margin-top: 0.5rem;
+}
+
+.loginmodal__signup-link {
+    color: var(--theme-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.loginmodal__signup-link:hover,
+.loginmodal__signup-link:focus {
+    color: var(--theme-primary);
+}
+
+.loginmodal__decor {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.loginmodal__svg {
+    width: 80px;
+    height: 40px;
+    opacity: 0.7;
+    filter: blur(0.5px) drop-shadow(0 2px 8px var(--theme-accent));
+    animation: loginmodal-decor-float 4s ease-in-out infinite alternate;
+}
+
+@keyframes loginmodal-decor-float {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-6px) scale(1.04);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .loginmodal__modal {
+        min-width: 0;
+        width: 98vw;
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        border-radius: 1rem;
+    }
+
+    .loginmodal__title {
+        font-size: 1.3rem;
+    }
+
+    .loginmodal__svg {
+        width: 50px;
+        height: 24px;
+    }
+}
