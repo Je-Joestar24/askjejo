@@ -1,0 +1,23 @@
+/* Mobile menu toggle */
+.header__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--theme-transition);
+}
+
+.header__mobile-toggle-line {
+    width: 24px;
+    height: 2px;
+    background: var(--theme-text);
+    border-radius: 1px;
+    transition: var(--theme-transition);
+}
+
+.header__mobile-toggle:hover .header__mobile-toggle-line {
+    background: var(--theme-primary);
+}

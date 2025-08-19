@@ -1,0 +1,35 @@
+/* Logo styles */
+.header__logo {
+    flex-shrink: 0;
+}
+
+.header__logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: var(--theme-transition);
+}
+
+.header__logo-link:hover {
+    transform: translateY(-1px);
+}
+
+.header__logo-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--theme-transition);
+}
+
+.header__logo-link:hover .header__logo-icon {
+    transform: scale(1.05);
+}
+
+.header__logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    letter-spacing: -0.025em;
+}

@@ -1,0 +1,54 @@
+/* Responsive design */
+@media (max-width: 768px) {
+    .header__container {
+        padding: 0 1rem;
+    }
+
+    .header__nav-list {
+        display: none;
+    }
+
+    .header__actions {
+        display: none;
+    }
+
+    .header__mobile-toggle {
+        display: flex;
+    }
+
+    /* Mobile menu toggle animation */
+    .header__mobile-toggle[aria-expanded="true"] .header__mobile-toggle-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .header__mobile-toggle[aria-expanded="true"] .header__mobile-toggle-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .header__mobile-toggle[aria-expanded="true"] .header__mobile-toggle-line:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+@media (max-width: 480px) {
+    .header__logo-text {
+        font-size: 1.25rem;
+    }
+
+    .header__container {
+        gap: 1rem;
+    }
+}
+
+/* Micro animations */
+@keyframes headerSlideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

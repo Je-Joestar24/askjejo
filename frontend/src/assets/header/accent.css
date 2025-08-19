@@ -1,0 +1,19 @@
+/* Top accent bars */
+.header__accent-bars {
+    height: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header__accent-bar {
+    height: 3px;
+    transition: var(--theme-transition);
+}
+
+.header__accent-bar--primary {
+    background: var(--theme-primary);
+}
+
+.header__accent-bar--secondary {
+    background: var(--theme-accent);
+}
