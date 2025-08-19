@@ -1,21 +1,21 @@
 import { createStore } from 'vuex'
-import { user } from './user'
 
 const store = createStore({
   state() {
     return {
-        ...user.state
-    }   
+      activeModal: '',
+    }
   },
   mutations: {
-    ...user.mutations
+    setActiveModal(state, active) {
+      state.activeModal = active
+    },
   },
   actions: {
-    ...user.actions
+    setActiveModal({ commit }, active) {
+      commit('setActiveModal', active)
+    },
   },
-  getters: {
-    ...user.getters
-  }
 })
 
 export default store

@@ -2,6 +2,7 @@
 @import './about/index.css';
 @import './header/index.css';
 @import './footer/index.css';
+@import './modals/index.css';
 
 :root {
   /* Container widths */

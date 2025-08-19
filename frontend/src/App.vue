@@ -3,7 +3,8 @@ import { RouterView } from 'vue-router'
 import {onMounted} from 'vue'
 import api from '@/config/api'
 import Navigation from './components/header/Navigation.vue';
-import FooterV from './components/footer/footer.vue';
+import FooterV from './components/footer/Footer.vue';
+import Modals from './components/modals/Modals.vue';
 
 const callApi =  async () => {
   try {
@@ -28,4 +29,5 @@ onMounted(callApi)
   <Navigation/>
   <RouterView />
   <FooterV />
+  <Modals/>
 </template>
