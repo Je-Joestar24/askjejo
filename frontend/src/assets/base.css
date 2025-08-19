@@ -1,5 +1,6 @@
 @import './home/index.css';
 @import './about/index.css';
+@import './header/index.css';
 
 :root {
   /* Container widths */
@@ -52,14 +53,17 @@
   
   /* Card System */
   --theme-card-radius: 1.5rem;
+  --card-radius: 1.5rem;
   --theme-card-shadow: var(--theme-shadow);
-  --theme-card-shadow-hover: var(--theme-shadow-lg);
+  --card-shadow: var(--theme-shadow);
+  --card-shadow-hover: var(--theme-shadow-lg);
   
   /* Special Effects */
   --theme-blur: blur(15px);
   --theme-blur-light: blur(10px);
   --theme-glow: rgba(37, 99, 235, 0.1);
   --theme-glow-heavy: rgba(37, 99, 235, 0.2);
+  --theme-globe: #dbeafe;
   
   /* Animation Variables */
   --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
