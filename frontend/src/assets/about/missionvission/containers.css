@@ -1,0 +1,20 @@
+.mv {
+    position: relative;
+    padding: clamp(2rem, 5vw, 5rem) 0;
+    background: var(--theme-bg);
+}
+
+.mv__container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.mv__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}

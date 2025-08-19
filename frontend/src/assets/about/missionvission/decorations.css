@@ -1,0 +1,26 @@
+/* Decorative shine */
+.mv__tile--content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(1200px 400px at -10% -10%, rgba(255, 255, 255, 0.18), transparent 60%);
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+}
+
+/* SVGs */
+.mv__svg {
+    width: min(72%, 520px);
+    height: auto;
+    color: var(--theme-secondary);
+    transform: translateZ(0);
+    animation: mvFloat 6s ease-in-out infinite;
+}
+
+.mv__svg--target {
+    color: var(--theme-primary);
+}
+
+.mv__svg--binoculars {
+    color: var(--theme-secondary);
+}

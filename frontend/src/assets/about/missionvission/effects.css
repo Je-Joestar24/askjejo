@@ -1,0 +1,20 @@
+/* Micro interactions */
+.mv__tile--art:hover .mv__svg {
+    animation-duration: 3.5s;
+}
+
+.mv__tile--content:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
+@keyframes mvFloat {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -8px, 0);
+    }
+}

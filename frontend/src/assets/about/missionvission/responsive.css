@@ -1,0 +1,13 @@
+/* Layout: stack on small screens */
+@media (max-width: 900px) {
+    .mv__grid {
+        grid-template-columns: 1fr;
+        box-shadow: none;
+        gap: 1rem;
+    }
+
+    .mv__tile {
+        border-radius: var(--card-radius);
+        box-shadow: var(--card-shadow);
+    }
+}
