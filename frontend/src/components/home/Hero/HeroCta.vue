@@ -8,7 +8,7 @@
                     stroke-linejoin="round" />
             </svg>
         </button>
-        <button class="hero__btn hero__btn--secondary" aria-label="Learn more about features">
+        <button @click.prevent="toggleModal('signup')" class="hero__btn hero__btn--secondary" aria-label="Learn more about features">
             <svg class="hero__btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M5 3l14 9-14 9V3z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
