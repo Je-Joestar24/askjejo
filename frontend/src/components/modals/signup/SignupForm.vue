@@ -3,7 +3,7 @@
         @click.prevent="result = null">
         {{ result?.message }}
     </div>
-    <form class="signupmodal__form" autocomplete="off">
+    <form class="signupmodal__form" autocomplete="off" @submit.prevent="">
         <div class="signupmodal__field">
             <label for="signup-email" class="signupmodal__label">Email</label>
             <input id="signup-email" type="email" class="signupmodal__input" v-model="signup.email"
