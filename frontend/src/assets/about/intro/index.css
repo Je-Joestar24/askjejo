@@ -14,9 +14,11 @@
 	background: var(--theme-bg);
 	overflow: hidden;
     min-height: 100vh;
+	display: flex;
 }
 
 .intro__container {
+	margin-top: auto;
 	position: relative;
 	z-index: 2;
 	max-width: var(--container-xl);
