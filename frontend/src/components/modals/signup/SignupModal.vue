@@ -14,6 +14,7 @@
   </div>
 </template>
 <script setup>
+import SignupForm from './SignupForm.vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
