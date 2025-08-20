@@ -4,9 +4,9 @@
         <button @click.prevent="toggleModal('login')" class="header__btn header__btn--secondary" role="button">
             Login
         </button>
-        <a href="/signup" class="header__btn header__btn--primary" role="button">
+        <button @click.prevent="toggleModal('signup')" class="header__btn header__btn--primary" role="button">
             Sign Up
-        </a>
+        </button>
     </div>
 
     <!-- Mobile menu toggle (hidden on desktop) -->
