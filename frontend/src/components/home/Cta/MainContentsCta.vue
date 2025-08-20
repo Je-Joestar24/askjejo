@@ -1,7 +1,7 @@
 <template>
     <!-- Call to Action Buttons -->
     <div class="cta__actions">
-        <button class="cta__btn cta__btn--primary" aria-label="Sign up for free AI chatbot access">
+        <button @click.prevent="toggleModal('signup')" class="cta__btn cta__btn--primary" aria-label="Sign up for free AI chatbot access">
             <div class="cta__btn-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
@@ -13,3 +13,12 @@
         </button>
     </div>
 </template>
+<script setup>
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const toggleModal = (active = '') => {
+  store.dispatch('setActiveModal', active)
+}
+</script>
