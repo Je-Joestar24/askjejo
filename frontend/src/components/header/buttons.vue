@@ -1,9 +1,9 @@
 <template>
     <!-- Action buttons -->
     <div class="header__actions">
-        <a href="/login" class="header__btn header__btn--secondary" role="button">
+        <button @click.prevent="toggleModal('login')" class="header__btn header__btn--secondary" role="button">
             Login
-        </a>
+        </button>
         <a href="/signup" class="header__btn header__btn--primary" role="button">
             Sign Up
         </a>
@@ -17,3 +17,14 @@
         <span class="header__mobile-toggle-line"></span>
     </button>
 </template>
+
+
+<script setup>
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const toggleModal = (active = '') => {
+  store.dispatch('setActiveModal', active)
+}
+</script>
