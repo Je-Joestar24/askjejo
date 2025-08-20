@@ -8,6 +8,12 @@
           {{ item.label }}
         </RouterLink>
       </li>
+      <li class="footer__item">
+        <a href="mailto:parrillajejomar@gmail.com?subject=Hello%20Jomar&body=I%20would%20like%20to%20get%20in%20touch."
+          class="footer__link">
+          Contact
+        </a>
+      </li>
     </ul>
   </nav>
 </template>
@@ -17,7 +23,6 @@ import { RouterLink } from 'vue-router'
 
 const navItems = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Ask', to: '/ask' },
+  { label: 'About', to: '/about' }
 ]
 </script>
