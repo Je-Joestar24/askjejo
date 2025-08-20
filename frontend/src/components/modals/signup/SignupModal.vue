@@ -15,7 +15,6 @@
 </template>
 <script setup>
 import { useStore } from 'vuex'
-import LoginForm from './LoginForm.vue'
 
 const store = useStore()
 
