@@ -16,4 +16,14 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import('../views/AboutView.vue'),
     },
+    {
+        path: '/ask',
+        name: 'ask',
+        component: () => import('../views/AskView.vue'),
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('../views/ProfileView.vue'),
+    }
 ]
