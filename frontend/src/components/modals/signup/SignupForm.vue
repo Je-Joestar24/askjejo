@@ -28,7 +28,7 @@
     </form>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue';
 
 
@@ -38,12 +38,12 @@ const signup = ref({
     password: ''
 })
 
-const isValidEmail = (email: string): boolean => {
+const isValidEmail = (email)=> {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
 }
 
-const result = ref<{ success: boolean; message: string } | null>(null)
+const result = ref(null)
 const confirm_password = ref<string>('')
 
 const clearForm = () => {
