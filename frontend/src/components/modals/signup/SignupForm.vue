@@ -44,7 +44,7 @@ const isValidEmail = (email)=> {
 }
 
 const result = ref(null)
-const confirm_password = ref<string>('')
+const confirm_password = ref('')
 
 const clearForm = () => {
     for (const key in signup.value) {
