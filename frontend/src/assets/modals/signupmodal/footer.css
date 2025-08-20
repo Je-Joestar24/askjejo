@@ -1,0 +1,21 @@
+.signupmodal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--min-violet-text-light);
+    margin-top: 0.5rem;
+}
+
+.signupmodal__login-link {
+    color: var(--theme-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.signupmodal__login-link:hover,
+.signupmodal__login-link:focus {
+    color: var(--theme-primary);
+}

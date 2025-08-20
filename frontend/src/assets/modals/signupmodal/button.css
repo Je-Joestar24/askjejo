@@ -1,0 +1,36 @@
+.signupmodal__button {
+    margin-top: 0.5rem;
+    padding: 0.8rem 0;
+    border-radius: 0.8rem;
+    background: var(--theme-btn);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 16px var(--shadow-light);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    border: none;
+    outline: none;
+    width: 100%;
+    animation: signupmodal-btn-pop 1.2s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+.signupmodal__button:hover,
+.signupmodal__button:focus {
+    background: var(--theme-btn-hover);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 24px var(--theme-accent);
+}
+
+@keyframes signupmodal-btn-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

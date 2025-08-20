@@ -1,0 +1,20 @@
+.signupmodal__header {
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+.signupmodal__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--theme-primary);
+    letter-spacing: -1px;
+}
+
+.signupmodal__message {
+    min-height: 1.5em;
+    color: var(--theme-accent);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    transition: color 0.3s;
+}

@@ -1,0 +1,36 @@
+.signupmodal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.2rem;
+}
+
+.signupmodal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.signupmodal__label {
+    font-size: 1rem;
+    color: var(--min-violet-text-light);
+    font-weight: 500;
+    margin-bottom: 0.1rem;
+}
+
+.signupmodal__input {
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
+    border: 1.5px solid var(--min-violet-border);
+    background: var(--min-violet-bg);
+    color: var(--min-violet-text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 6px var(--shadow-light);
+}
+
+.signupmodal__input:focus {
+    border: 1.5px solid var(--theme-primary);
+    box-shadow: 0 2px 12px var(--theme-globe);
+}
