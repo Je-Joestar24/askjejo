@@ -1,7 +1,7 @@
 <template>
     <!-- Socials -->
     <div class="footer__social" role="group" aria-label="Social links">
-        <a href="#" class="footer__icon" aria-label="GitHub">
+        <a href="https://github.com/Je-Joestar24" target="_blank" class="footer__icon" aria-label="GitHub">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.16" />
                 <path
@@ -9,7 +9,7 @@
                     fill="currentColor" />
             </svg>
         </a>
-        <a href="#" class="footer__icon" aria-label="Facebook">
+        <a href="https://www.facebook.com/jejomar.parrilla" target="_blank" class="footer__icon" aria-label="Facebook">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.16" />
                 <path
@@ -17,7 +17,7 @@
                     fill="currentColor" />
             </svg>
         </a>
-        <a href="#" class="footer__icon" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/jejomar-parrilla-ab5442239" target="_blank" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.16" />
                 <path
