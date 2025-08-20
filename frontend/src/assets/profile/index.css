@@ -2,7 +2,7 @@
 .profile-container {
     margin-top: 2.5rem;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--theme-bg) 0%, var(--min-violet-bg) 100%);
+    background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-bg-secondary) 100%);
     padding: 2rem 1rem;
     display: flex;
     align-items: center;
@@ -10,9 +10,9 @@
 }
 
 .profile-card {
-    background: var(--min-violet-surface);
-    border-radius: var(--card-radius);
-    box-shadow: var(--min-violet-shadow);
+    background: var(--theme-bg-card);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--theme-border-secondary);
     padding: 2.5rem;
     width: 100%;
     max-width: 600px;
@@ -39,7 +39,7 @@
     justify-content: space-between;
     margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--min-violet-border);
+    border-bottom: 1px solid var(--theme-border);
 }
 
 .avatar-section {
@@ -56,8 +56,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(179, 136, 255, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: var(--theme-shadow-glow);
+    transition: var(--theme-transition);
     position: relative;
     overflow: hidden;
 }
@@ -76,13 +76,13 @@
 
 .avatar-circle:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(179, 136, 255, 0.4);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .user-icon {
     width: 40px;
     height: 40px;
-    color: white;
+    color: var(--theme-text-inverse);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
@@ -92,13 +92,13 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: var(--min-violet-btn);
-    color: white;
+    background: var(--theme-btn);
+    color: var(--theme-text-inverse);
     border-radius: 2rem;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 12px rgba(179, 136, 255, 0.3);
+    transition: var(--theme-transition);
+    box-shadow: var(--theme-shadow);
     position: relative;
     overflow: hidden;
 }
@@ -119,26 +119,26 @@
 }
 
 .edit-btn:hover {
-    background: var(--min-violet-btn-hover);
+    background: var(--theme-btn-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(179, 136, 255, 0.4);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .edit-btn.active {
-    background: #ff4757;
-    box-shadow: 0 2px 12px rgba(255, 71, 87, 0.3);
+    background: var(--theme-error);
+    box-shadow: var(--theme-shadow);
 }
 
 .edit-btn.active:hover {
-    background: #ff3742;
-    box-shadow: 0 4px 20px rgba(255, 71, 87, 0.4);
+    background: var(--theme-error);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .edit-icon,
 .close-icon {
     width: 18px;
     height: 18px;
-    transition: transform 0.3s ease;
+    transition: var(--theme-transition);
 }
 
 .edit-btn:hover .edit-icon {
@@ -164,32 +164,32 @@
 
 .form-label {
     font-weight: 600;
-    color: var(--min-violet-text-main);
+    color: var(--theme-text);
     font-size: 0.95rem;
     margin-bottom: 0.25rem;
 }
 
 .form-input {
     padding: 1rem 1.25rem;
-    border: 2px solid var(--min-violet-border);
+    border: 2px solid var(--theme-border);
     border-radius: 1rem;
     font-size: 1rem;
-    background: var(--min-violet-surface);
-    color: var(--min-violet-text-main);
-    transition: all 0.3s ease;
+    background: var(--theme-bg-secondary);
+    color: var(--theme-text);
+    transition: var(--theme-transition);
     font-family: inherit;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: var(--min-violet-text-main);
-    box-shadow: 0 0 0 3px rgba(179, 136, 255, 0.1);
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 0 3px var(--theme-glow);
     transform: translateY(-1px);
 }
 
 .form-input:disabled {
-    background: #f8f9fa;
-    color: #6c757d;
+    background: var(--theme-bg-tertiary);
+    color: var(--theme-text-muted);
     cursor: not-allowed;
     opacity: 0.7;
 }
@@ -200,7 +200,7 @@
 
 .form-help {
     font-size: 0.85rem;
-    color: var(--min-violet-text-light);
+    color: var(--theme-text-secondary);
     margin-top: 0.25rem;
 }
 
@@ -208,7 +208,7 @@
 .password-section {
     margin-top: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--min-violet-border);
+    border-top: 1px solid var(--theme-border);
 }
 
 .change-password-btn {
@@ -222,7 +222,7 @@
     border-radius: 2rem;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: var(--theme-transition);
     position: relative;
     overflow: hidden;
 }
@@ -234,7 +234,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(179, 136, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, var(--theme-glow), transparent);
     transition: left 0.5s ease;
 }
 
@@ -244,21 +244,21 @@
 
 .change-password-btn:hover {
     background: var(--theme-primary);
-    color: white;
+    color: var(--theme-text-inverse);
     transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(179, 136, 255, 0.3);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .change-password-btn.active {
     background: var(--theme-primary);
-    color: white;
-    box-shadow: 0 4px 15px rgba(179, 136, 255, 0.3);
+    color: var(--theme-text-inverse);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .lock-icon {
     width: 16px;
     height: 16px;
-    transition: transform 0.3s ease;
+    transition: var(--theme-transition);
 }
 
 .change-password-btn:hover .lock-icon {
@@ -269,9 +269,9 @@
 .password-form {
     margin-top: 1.5rem;
     padding: 1.5rem;
-    background: rgba(179, 136, 255, 0.05);
+    background: var(--theme-glow);
     border-radius: 1rem;
-    border: 1px solid rgba(179, 136, 255, 0.1);
+    border: 1px solid var(--theme-border-accent);
     animation: slideDown 0.3s ease-out;
 }
 
@@ -281,7 +281,7 @@
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--min-violet-border);
+    border-top: 1px solid var(--theme-border);
 }
 
 .btn {
@@ -292,7 +292,7 @@
     border-radius: 2rem;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: var(--theme-transition);
     position: relative;
     overflow: hidden;
     min-width: 120px;
@@ -316,19 +316,19 @@
 
 .btn-primary {
     background: var(--theme-primary);
-    color: white;
-    box-shadow: 0 4px 15px rgba(179, 136, 255, 0.3);
+    color: var(--theme-text-inverse);
+    box-shadow: var(--theme-shadow);
 }
 
 .btn-primary:hover {
-    background: var(--min-violet-btn-hover);
+    background: var(--theme-btn-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(179, 136, 255, 0.4);
+    box-shadow: var(--theme-shadow-glow);
 }
 
 .btn-primary:disabled {
-    background: #ccc;
-    color: #666;
+    background: var(--theme-text-muted);
+    color: var(--theme-text-secondary);
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -336,20 +336,20 @@
 
 .btn-secondary {
     background: transparent;
-    color: var(--min-violet-text-main);
-    border: 2px solid var(--min-violet-border);
+    color: var(--theme-text);
+    border: 2px solid var(--theme-border);
 }
 
 .btn-secondary:hover {
-    background: var(--min-violet-border);
-    color: var(--min-violet-text-main);
+    background: var(--theme-border);
+    color: var(--theme-text);
     transform: translateY(-1px);
 }
 
 .save-icon {
     width: 18px;
     height: 18px;
-    transition: transform 0.3s ease;
+    transition: var(--theme-transition);
 }
 
 .btn-primary:hover .save-icon {
@@ -452,29 +452,5 @@
     .form-input {
         padding: 0.875rem 1rem;
         font-size: 0.95rem;
-    }
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    .profile-card {
-        background: var(--min-violet-surface);
-        box-shadow: var(--min-violet-shadow);
-    }
-
-    .form-input {
-        background: var(--min-violet-surface);
-        color: var(--min-violet-text-main);
-        border-color: var(--min-violet-border);
-    }
-
-    .form-input:disabled {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--min-violet-text-light);
-    }
-
-    .password-form {
-        background: rgba(124, 77, 255, 0.1);
-        border-color: rgba(124, 77, 255, 0.2);
     }
 }
