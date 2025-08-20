@@ -7,7 +7,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 1200;
-    background: var(--modal-overlay);
+    background: var(--theme-bg-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,9 +26,9 @@
 }
 
 .signupmodal__modal {
-    background: var(--min-violet-surface);
+    background: var(--theme-bg-card);
     border-radius: 1.25rem;
-    box-shadow: 0 8px 40px var(--shadow-dark);
+    box-shadow: var(--theme-shadow-lg);
     padding: 2.5rem 2rem 2rem 2rem;
     min-width: 320px;
     max-width: 95vw;

@@ -4,7 +4,7 @@
     justify-content: center;
     gap: 0.5rem;
     font-size: 1rem;
-    color: var(--min-violet-text-light);
+    color: var(--theme-text-secondary);
     margin-top: 0.5rem;
 }
 
