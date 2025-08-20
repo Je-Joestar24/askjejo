@@ -1,5 +1,7 @@
 <template>
-    <MainDisplay/>
+    <div class="profile-container">
+        <MainDisplay />
+    </div>
 </template>
 
 <script setup>
