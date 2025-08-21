@@ -14,7 +14,7 @@
         </div>
         <!-- Change Password Section -->
         <div class="password-section" v-show="state.isEditing">
-            <button @click="" type="button" class="change-password-btn" :class="{ 'active': state.showPasswordChange }"
+            <button @click="togglePasswordChange" type="button" class="change-password-btn" :class="{ 'active': state.showPasswordChange }"
                 aria-label="Change password">
                 <svg class="lock-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path
@@ -60,4 +60,8 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const state = store.state.profile
+
+const togglePasswordChange = () => {
+    store.dispatch('togglePasswordChange')
+}
 </script>

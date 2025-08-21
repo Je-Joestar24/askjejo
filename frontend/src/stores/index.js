@@ -38,8 +38,7 @@ const store = createStore({
     cancelEdit(state) {
       state.profile.isEditing = false
       state.profile.showPasswordChange = false
-      /* this.resetPasswordData()
-
+/* 
       // Reset to original values
       const userStore = useUserStore()
       if (userStore.logged_user) {
