@@ -63,6 +63,9 @@ const store = createStore({
         commit('toggleEdit')
       }
     },
+    cancelEdit({commit}){
+      commit('cancelEdit')
+    }
   },
 })
 

@@ -1,6 +1,6 @@
 <template>
     <div class="form-actions" v-if="state.isEditing">
-        <button type="button" @click="" class="btn btn-secondary" aria-label="Cancel changes">
+        <button type="button" @click="cancelEdit" class="btn btn-secondary" aria-label="Cancel changes">
             Cancel
         </button>
         <button type="submit" class="btn btn-primary" :disabled="!false" aria-label="Save profile changes">
@@ -18,4 +18,8 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const state = store.state.profile
+
+const cancelEdit = () => {
+    store.dispatch('cancelEdit')
+}
 </script>
