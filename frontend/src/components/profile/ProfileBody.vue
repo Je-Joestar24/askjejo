@@ -1,11 +1,6 @@
 <template>
     <form @submit.prevent="" class="profile-form">
-        <div class="form-group">
-            <label for="username" class="form-label">Username</label>
-            <input id="username" type="text" class="form-input" :disabled="!state.isEditing" :class="{ 'editing': state.isEditing }"
-                aria-describedby="username-help" />
-            <div id="username-help" class="form-help">Your display name</div>
-        </div>
+        <Email/>
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
             <input id="email" type="email" class="form-input" :disabled="!state.isEditing" :class="{ 'editing': state.isEditing }"
@@ -57,6 +52,7 @@
 
 <script setup>
 import { useStore } from 'vuex'
+import Email from './Email.vue'
 
 const store = useStore()
 const state = store.state.profile
