@@ -1,9 +1,9 @@
 <template>
     <div class="form-group">
-        <label for="username" class="form-label">Username</label>
-        <input v-model="state.profileData.name" type="text" class="form-input" :disabled="!state.isEditing"
-            :class="{ 'editing': state.isEditing }" aria-describedby="username-help" />
-        <div id="username-help" class="form-help">Your display name</div>
+        <label for="email" class="form-label">Email</label>
+        <input v-model="state.profileData.email" id="email" type="email" class="form-input" :disabled="!state.isEditing" :class="{ 'editing': state.isEditing }"
+            aria-describedby="email-help" />
+        <div id="email-help" class="form-help">Your email address</div>
     </div>
 </template>
 <script setup>
