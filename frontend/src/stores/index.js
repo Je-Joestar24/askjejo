@@ -19,7 +19,7 @@ const store = createStore({
           name: '',
           email: '',
         }
-      }
+      }, user: {}
     }
   },
   mutations: {
@@ -27,12 +27,13 @@ const store = createStore({
       state.activeModal = active
     }, togglePasswordChange(state) {
       state.profile.showPasswordChange = !state.profile.showPasswordChange
-      if (!state.profile.showPasswordChange) {
-        //this.resetPasswordData()
-      }
     }, toggleEdit(state) {
-        state.profile.isEditing = true
-        state.profile.showPasswordChange = false
+      state.profile.isEditing = true
+      state.profile.showPasswordChange = false
+    },
+    resetPasswordData(state) {
+      state.profile.passwordData.currentPassword = ''
+      state.profile.passwordData.newPassword = ''
     },
     cancelEdit(state) {
       state.profile.isEditing = false
@@ -51,8 +52,11 @@ const store = createStore({
     setActiveModal({ commit }, active) {
       commit('setActiveModal', active)
     },
-    togglePasswordChange({ commit }) {
+    togglePasswordChange({ commit, state }) {
       commit('togglePasswordChange')
+      if (!state.profile.showPasswordChange) {
+        commit('resetPasswordData')
+      }
     },
     toggleEdit({ commit, state }) {
       if (state.profile.isEditing) {
