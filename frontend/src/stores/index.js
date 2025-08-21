@@ -4,6 +4,22 @@ const store = createStore({
   state() {
     return {
       activeModal: '',
+      profile: {
+        isEditing: false,
+        showPasswordChange: false,
+        profileData: {
+          name: '',
+          email: '',
+        },
+        passwordData: {
+          currentPassword: '',
+          newPassword: '',
+        },
+        originalData: {
+          name: '',
+          email: '',
+        }
+      }
     }
   },
   mutations: {
