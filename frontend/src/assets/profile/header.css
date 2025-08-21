@@ -1,0 +1,53 @@
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--theme-border);
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--theme-shadow-glow);
+    transition: var(--theme-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+.avatar-circle:hover {
+    transform: scale(1.05);
+    box-shadow: var(--theme-shadow-glow);
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--theme-text-inverse);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}

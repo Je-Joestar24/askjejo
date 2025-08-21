@@ -1,0 +1,33 @@
+/* Profile Page Styles */
+.profile-container {
+    margin-top: 2.5rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-bg-secondary) 100%);
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card {
+    background: var(--theme-bg-card);
+    border-radius: var(--theme-card-radius);
+    box-shadow: var(--theme-border-secondary);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--theme-primary), var(--theme-secondary), var(--theme-accent));
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
