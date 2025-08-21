@@ -2,29 +2,29 @@
     <form @submit.prevent="" class="profile-form">
         <div class="form-group">
             <label for="username" class="form-label">Username</label>
-            <input id="username" type="text" class="form-input" :disabled="!isEditing" :class="{ 'editing': isEditing }"
+            <input id="username" type="text" class="form-input" :disabled="!state.isEditing" :class="{ 'editing': state.isEditing }"
                 aria-describedby="username-help" />
             <div id="username-help" class="form-help">Your display name</div>
         </div>
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input id="email" type="email" class="form-input" :disabled="!isEditing" :class="{ 'editing': isEditing }"
+            <input id="email" type="email" class="form-input" :disabled="!state.isEditing" :class="{ 'editing': state.isEditing }"
                 aria-describedby="email-help" />
             <div id="email-help" class="form-help">Your email address</div>
         </div>
         <!-- Change Password Section -->
-        <div class="password-section" v-show="isEditing">
-            <button @click="" type="button" class="change-password-btn" :class="{ 'active': showPasswordChange }"
+        <div class="password-section" v-show="state.isEditing">
+            <button @click="" type="button" class="change-password-btn" :class="{ 'active': state.showPasswordChange }"
                 aria-label="Change password">
                 <svg class="lock-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path
                         d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10z" />
                 </svg>
-                {{ showPasswordChange ? 'Cancel Password Change' : 'Change Password' }}
+                {{ state.showPasswordChange ? 'Cancel Password Change' : 'Change Password' }}
             </button>
 
             <!-- Password Change Form -->
-            <div v-if="showPasswordChange" class="password-form">
+            <div v-if="state.showPasswordChange" class="password-form">
                 <div class="form-group">
                     <label for="currentPassword" class="form-label">Current Password</label>
                     <input id="currentPassword" type="password" class="form-input" placeholder="Enter current password"
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-actions" v-if="isEditing">
+        <div class="form-actions" v-if="state.isEditing">
             <button type="button" @click="" class="btn btn-secondary" aria-label="Cancel changes">
                 Cancel
             </button>
@@ -59,5 +59,5 @@
 import { useStore } from 'vuex'
 
 const store = useStore()
-const { isEditing, showPasswordChange, profileData, passwordData, originalData } = store.state.profile
+const state = store.state.profile
 </script>
