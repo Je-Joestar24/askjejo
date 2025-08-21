@@ -19,7 +19,8 @@ const store = createStore({
           name: '',
           email: '',
         }
-      }, user: {}
+      },
+      user: {logged_user: null}
     }
   },
   mutations: {
@@ -38,13 +39,11 @@ const store = createStore({
     cancelEdit(state) {
       state.profile.isEditing = false
       state.profile.showPasswordChange = false
-/* 
-      // Reset to original values
-      const userStore = useUserStore()
-      if (userStore.logged_user) {
+      
+      if (user.logged_user) {
         state.profileData.name = state.originalData.name
         state.profileData.email = state.originalData.email
-      } */
+      }
     },
   },
   actions: {
