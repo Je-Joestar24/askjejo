@@ -5,8 +5,9 @@
 
 <script setup>
 import LoginModal from './login/LoginModal.vue';
-import { useStore } from 'vuex'
 import SignupModal from './signup/SignupModal.vue';
+
+import { useStore } from 'vuex'
 
 const store = useStore()
 </script>
