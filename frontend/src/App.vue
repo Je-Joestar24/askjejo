@@ -60,7 +60,7 @@ const callApi = async () => {
     }
 }
 
-onMounted(callApi)
+//onMounted(callApi)
 </script>
 
 <template>

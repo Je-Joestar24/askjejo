@@ -99,7 +99,7 @@ const signupNow = async () => {
         const res = await store.dispatch('signup', {
             name: signup.value.name,
             email: signup.value.email,
-            password: signup.value.password
+            password: signup.value.password,
         })
 
         result.value = res

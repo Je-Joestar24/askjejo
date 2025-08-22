@@ -58,7 +58,7 @@ const store = createStore({
       try {
         await csrf()
 
-        const { data } = await state.api.post('/auth/signup', {
+        const { data } = await state.api.post('/api/auth/signup', {
           name: payload?.name,
           email: payload?.email,
           password: payload?.password,

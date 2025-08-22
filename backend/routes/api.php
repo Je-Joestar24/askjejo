@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\api\UserAuths;
+use App\Http\Controllers\auth\SignupUserController;
 
 // Public routes (no auth required)
-Route::post('/auth/signup', [UserAuths::class, 'signup']);
+Route::post('/auth/signup', [SignupUserController::class, 'store']);
 Route::post('/auth/login', [UserAuths::class, 'login']);
 Route::post('/auth/logout', [UserAuths::class, 'logout']);
 
@@ -26,7 +27,7 @@ Route::post('/debug', function (Request $request) {
     if (!session()->isStarted()) {
         session()->start();
     }
-    
+
     return response()->json([
         'message' => 'Debug route - checking request details',
         'timestamp' => now()->toISOString(),
@@ -52,9 +53,9 @@ Route::post('/test', function (Request $request) {
     ]);
 });
 
+Route::get('/users', [UserAuths::class, 'index']);
 // Protected routes (require auth)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/users', [UserAuths::class, 'index']);
     Route::get('/user', function () {
         return response()->json([
             'user' => Auth::user(),
