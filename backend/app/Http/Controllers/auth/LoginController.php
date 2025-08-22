@@ -30,6 +30,7 @@ class LoginController extends Controller
         }
 
         return response()->json([
+            'success'      => true,
             'message'      => 'Login successful.',
             'auth_type'    => 'session',
             'user'         => new UserResource($user),
