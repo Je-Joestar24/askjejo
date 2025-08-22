@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import api from '@/config/api'
 
 const store = createStore({
   state() {
@@ -20,7 +21,8 @@ const store = createStore({
           email: '',
         }
       },
-      user: {logged_user: null}
+      user: {logged_user: null},
+      api: api
     }
   },
   mutations: {
@@ -49,6 +51,22 @@ const store = createStore({
   actions: {
     setActiveModal({ commit }, active) {
       commit('setActiveModal', active)
+    },
+    async signup({ state }, payload) {
+      try {
+        const { data } = await state.api.post('/auth/signup', {
+          name: payload?.name,
+          email: payload?.email,
+          password: payload?.password,
+        })
+        return data
+      } catch (error) {
+        const responseData = error?.response?.data
+        return responseData ?? {
+          success: false,
+          message: 'Request failed.',
+        }
+      }
     },
     togglePasswordChange({ commit, state }) {
       commit('togglePasswordChange')
