@@ -5,6 +5,7 @@ import api from '@/config/api'
 import Navigation from './components/header/Navigation.vue';
 import FooterV from './components/footer/Footer.vue';
 import Modals from './components/modals/Modals.vue';
+import Loading from './composables/loading/Loading.vue';
 
 const callApi =  async () => {
   try {
@@ -30,4 +31,5 @@ onMounted(callApi)
   <RouterView />
   <FooterV />
   <Modals/>
+  <Loading/>
 </template>

@@ -6,7 +6,7 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1200;
+    z-index: 120;
     background: var(--theme-bg-overlay);
     display: flex;
     align-items: center;

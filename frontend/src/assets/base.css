@@ -4,6 +4,7 @@
 @import './footer/index.css';
 @import './modals/index.css';
 @import './profile/index.css';
+@import './loading/index.css';
 
 :root {
   /* Container widths */
