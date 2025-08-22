@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import api from '@/config/api'
+import { csrf } from '@/config/api'
 
 const store = createStore({
   state() {
@@ -21,7 +22,7 @@ const store = createStore({
           email: '',
         }
       },
-      user: {logged_user: null},
+      user: { logged_user: null },
       api: api,
       loading: false
     }
@@ -42,7 +43,7 @@ const store = createStore({
     cancelEdit(state) {
       state.profile.isEditing = false
       state.profile.showPasswordChange = false
-      
+
       if (user.logged_user) {
         state.profileData.name = state.originalData.name
         state.profileData.email = state.originalData.email
@@ -55,11 +56,14 @@ const store = createStore({
     },
     async signup({ state }, payload) {
       try {
+        await csrf()
+
         const { data } = await state.api.post('/auth/signup', {
           name: payload?.name,
           email: payload?.email,
           password: payload?.password,
         })
+
         return data
       } catch (error) {
         const responseData = error?.response?.data
@@ -82,7 +86,7 @@ const store = createStore({
         commit('toggleEdit')
       }
     },
-    cancelEdit({commit}){
+    cancelEdit({ commit }) {
       commit('cancelEdit')
     }
   },
