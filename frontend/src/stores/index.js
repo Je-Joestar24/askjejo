@@ -22,7 +22,8 @@ const store = createStore({
         }
       },
       user: {logged_user: null},
-      api: api
+      api: api,
+      loading: false
     }
   },
   mutations: {
