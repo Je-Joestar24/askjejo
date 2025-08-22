@@ -52,10 +52,10 @@ Route::post('/test', function (Request $request) {
         'cookies' => $request->cookies->all(),
     ]);
 });
-
-Route::get('/users', [UserAuths::class, 'index']);
 // Protected routes (require auth)
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/users', [UserAuths::class, 'index']);
     Route::get('/user', function () {
         return response()->json([
             'user' => Auth::user(),
