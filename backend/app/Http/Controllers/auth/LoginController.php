@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\AuthService;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,6 +29,9 @@ class LoginController extends Controller
         if (! $user) {
             return response()->json(['message' => 'Invalid credentials.'], 401);
         }
+
+        // 👇 Persist the login to the session
+        Auth::login($user);
 
         return response()->json([
             'success'      => true,

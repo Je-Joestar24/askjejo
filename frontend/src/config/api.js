@@ -15,36 +15,36 @@ const api = axios.create({
 // call this before any POST/PUT/DELETE that needs CSRF (signup/login/logout)
 export async function csrf() {
     try {
-        console.log('Requesting CSRF cookie...')
+        //console.log('Requesting CSRF cookie...')
         
         // First, get the CSRF cookie
         const response = await api.get('/sanctum/csrf-cookie')
-        console.log('CSRF cookie response:', response)
+        //console.log('CSRF cookie response:', response)
         
         // Wait a bit for the cookie to be set
         await new Promise(resolve => setTimeout(resolve, 100))
         
         // Extract the CSRF token from the cookie
         const token = getCookie('XSRF-TOKEN')
-        console.log('Raw CSRF token from cookie:', token)
+        //console.log('Raw CSRF token from cookie:', token)
         
         if (token) {
             // Decode the token (Laravel encodes it in the cookie)
             const decodedToken = decodeURIComponent(token)
-            console.log('Decoded CSRF token:', decodedToken)
+            //console.log('Decoded CSRF token:', decodedToken)
             
             // Set the CSRF token in the default headers for all future requests
             // Laravel expects X-CSRF-TOKEN header
             api.defaults.headers.common['X-CSRF-TOKEN'] = decodedToken
-            console.log('CSRF token set in headers:', api.defaults.headers.common['X-CSRF-TOKEN'])
+            //console.log('CSRF token set in headers:', api.defaults.headers.common['X-CSRF-TOKEN'])
         } else {
             console.warn('No CSRF token found in cookies')
-            console.log('Available cookies:', document.cookie)
+            //console.log('Available cookies:', document.cookie)
         }
         
         return true
     } catch (error) {
-        console.error('Failed to get CSRF token:', error)
+        //console.error('Failed to get CSRF token:', error)
         return false
     }
 }
