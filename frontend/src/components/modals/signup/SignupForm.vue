@@ -100,6 +100,7 @@ const signupNow = async () => {
             name: signup.value.name,
             email: signup.value.email,
             password: signup.value.password,
+            password_confirmation: confirm_password
         })
 
         result.value = res
