@@ -12,6 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // 👇 Enable Sanctum for stateful API requests (cookie/session auth)
+        $middleware->statefulApi();
         // Add it at the very end so it can decorate any response, or
         // move it to the very beginning to short-circuit OPTIONS ASAP.
         $middleware->append(\App\Http\Middleware\Cors::class);

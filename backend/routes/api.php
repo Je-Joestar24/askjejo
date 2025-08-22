@@ -7,8 +7,10 @@ Route::post('/auth/signup', [UserAuths::class, 'signup']);
 
 Route::get('/users', [UserAuths::class, 'index']);
 
-Route::post('/test', function () {
-    return response()->json([
-        'laravel_version' => app()->version(),
-    ]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/test', function () {
+        return response()->json([
+            'laravel_version' => app()->version(),
+        ]);
+    });
 });
