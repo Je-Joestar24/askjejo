@@ -6,7 +6,7 @@
     </div>
 
     <!-- Validation or network error -->
-    <div v-if="error" class="signupmodal__message error" aria-live="polite" @click.prevent="error = null">
+    <div v-if="error && !result" class="signupmodal__message error" aria-live="polite" @click.prevent="error = null">
         {{ error }}
     </div>
     <form class="signupmodal__form" autocomplete="off" @submit.prevent="signupNow">
@@ -44,6 +44,10 @@ const signup = ref({
     name: '',
     password: ''
 })
+
+const toggleModal = (active = '') => {
+    store.dispatch('setActiveModal', active)
+}
 
 const confirm_password = ref('')
 const result = ref(null)
@@ -99,7 +103,12 @@ const signupNow = async () => {
         })
 
         result.value = res
-        clearForm()
+        if (res.success) {
+            clearForm()
+            toggleModal()
+        } else {
+            error.value = res.message
+        }
     } catch (err) {
         console.error('Signup failed:', err)
         error.value = err?.message || 'Something went wrong, please try again.'
