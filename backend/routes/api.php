@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\api\UserAuths;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\SignupUserController;
 
 // Public routes (no auth required)
 Route::post('/auth/signup', [SignupUserController::class, 'store']);
-Route::post('/auth/login', [UserAuths::class, 'login']);
+Route::post('/auth/login', [LoginController::class, 'login']);
 Route::post('/auth/logout', [UserAuths::class, 'logout']);
 
 // Test routes to verify CORS and CSRF
