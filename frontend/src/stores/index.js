@@ -62,6 +62,25 @@ const store = createStore({
           name: payload?.name,
           email: payload?.email,
           password: payload?.password,
+          password_confirmation: payload?.password_confirmation,
+        })
+
+        return data
+      } catch (error) {
+        const responseData = error?.response?.data
+        return responseData ?? {
+          success: false,
+          message: 'Request failed.',
+        }
+      }
+    },
+    async login({ state }, payload) {
+      try {
+        await csrf()
+
+        const { data } = await state.api.post('/api/auth/login', {
+          email: payload?.email,
+          password: payload?.password,
         })
 
         return data
