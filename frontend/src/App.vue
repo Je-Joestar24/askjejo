@@ -9,13 +9,13 @@ import { onMounted } from 'vue';
 
 const store = useStore()
 const state = store.state
-onMounted(store.dispatch('initialize'))
+onMounted(() => { store.dispatch('initialize') })
 </script>
 
 <template>
-  <Navigation/>
+  <Navigation />
   <RouterView />
   <FooterV />
-  <Modals/>
-  <Loading :show="state.loading"/>
+  <Modals />
+  <Loading :show="state.loading" />
 </template>

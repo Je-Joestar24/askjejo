@@ -22,7 +22,10 @@ const store = createStore({
           email: '',
         }
       },
-      user: { logged_user: null },
+      user: {
+        logged_user: null,
+        token: ''
+      },
       api: api,
       loading: false
     }
@@ -83,12 +86,15 @@ const store = createStore({
           password: payload?.password,
         })
 
-        this.token = response.data.token
-        this.user = response.data.user
-        localStorage.setItem('token', this.token)
-        localStorage.setItem('user', JSON.stringify(this.user))
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-        return data
+        state.user.token = response.data.token
+        state.user.logged_user = response.data.user
+        localStorage.setItem('token', state.user.token)
+        localStorage.setItem('user', JSON.stringify(state.user.logged_user))
+        api.defaults.headers.common['Authorization'] = `Bearer ${state.user.token}`
+        return {
+          success: response.data.success,
+          message: response.data.message
+        }
       } catch (error) {
         const responseData = error?.response?.data
         return responseData ?? {
@@ -112,7 +118,7 @@ const store = createStore({
     },
     cancelEdit({ commit }) {
       commit('cancelEdit')
-    }, 
+    },
     initialize() {
       const token = localStorage.getItem('token')
       if (token) {

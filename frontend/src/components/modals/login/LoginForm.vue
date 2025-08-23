@@ -1,8 +1,15 @@
 <template>
+    <!-- Success/Error message after login -->
     <div v-if="result" class="loginmodal__message" :class="result?.success ? 'success' : 'error'" aria-live="polite"
         @click.prevent="result = null">
         {{ result?.message }}
     </div>
+
+    <!-- Validation or network error -->
+    <div v-if="error && !result" class="loginmodal__message error" aria-live="polite" @click.prevent="error = null">
+        {{ error }}
+    </div>
+    
     <form class="loginmodal__form" autocomplete="off" @submit.prevent="loginNow">
         <div class="loginmodal__field">
             <label for="login-email" class="loginmodal__label">Email</label>
@@ -26,12 +33,33 @@ const store = useStore()
 const state = store.state
 const login_form = ref({ email: '', password: '' })
 const result = ref(null)
+const error = ref(null)
 
 const toggleModal = (active = '') => {
     store.dispatch('setActiveModal', active)
 }
 
+const clearForm = () => {
+    login_form.value.email = ''
+    login_form.value.password = ''
+    error.value = null
+    result.value = null
+}
+
 const loginNow = async () => {
+    error.value = null
+    result.value = null
+
+    // Basic validation
+    if (!login_form.value.email.trim()) {
+        error.value = 'Email is required'
+        return
+    }
+
+    if (!login_form.value.password) {
+        error.value = 'Password is required'
+        return
+    }
 
     try {
         state.loading = true
@@ -42,12 +70,14 @@ const loginNow = async () => {
 
         result.value = res
         if (res.success) {
+            clearForm()
             toggleModal()
         } else {
             error.value = res.message
         }
     } catch (err) {
         console.error('Login failed:', err)
+        error.value = err?.message || 'Something went wrong, please try again.'
     } finally {
         state.loading = false
     }
