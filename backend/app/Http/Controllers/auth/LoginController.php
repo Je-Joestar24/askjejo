@@ -43,11 +43,11 @@ class LoginController extends Controller
         ]);
     }
 
-
-
     public function logout(Request $request)
     {
-        $this->authService->logout($request->user());
-        return response()->json(['message' => 'Logged out successfully.']);
+        // Revoke only the current token
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out']);
     }
 }

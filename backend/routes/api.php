@@ -12,15 +12,6 @@ Route::post('/auth/signup', [SignupUserController::class, 'store']);
 Route::post('/auth/login', [LoginController::class, 'login']);
 Route::post('/auth/logout', [UserAuths::class, 'logout']);
 
-// Test routes to verify CORS and CSRF
-Route::get('/test', function () {
-    return response()->json([
-        'message' => 'GET request working!',
-        'laravel_version' => app()->version(),
-        'timestamp' => now()->toISOString(),
-        'csrf_token' => csrf_token(),
-    ]);
-});
 
 // Debug route to check request details
 Route::post('/debug', function (Request $request) {
@@ -56,6 +47,15 @@ Route::post('/test', function (Request $request) {
 // Protected routes (require auth)
 Route::middleware('auth:sanctum')->group(function () {
 
+    // Test routes to verify CORS and CSRF
+    Route::get('/test', function () {
+        return response()->json([
+            'message' => 'GET request working!',
+            'laravel_version' => app()->version(),
+            'timestamp' => now()->toISOString(),
+            'csrf_token' => csrf_token(),
+        ]);
+    });
     Route::get('/users', [UserAuths::class, 'index']);
     Route::get('/user', function () {
         return response()->json([
@@ -64,3 +64,4 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
 });
+Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
