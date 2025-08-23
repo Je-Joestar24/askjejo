@@ -5,9 +5,11 @@ import Navigation from './components/header/Navigation.vue';
 import FooterV from './components/footer/Footer.vue';
 import Modals from './components/modals/Modals.vue';
 import Loading from './composables/loading/Loading.vue';
+import { onMounted } from 'vue';
 
 const store = useStore()
 const state = store.state
+onMounted(store.dispatch('initialize'))
 </script>
 
 <template>

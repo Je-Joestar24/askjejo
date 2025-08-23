@@ -78,11 +78,16 @@ const store = createStore({
       try {
         await csrf()
 
-        const { data } = await state.api.post('/api/auth/login', {
+        const response = await state.api.post('/api/auth/login', {
           email: payload?.email,
           password: payload?.password,
         })
 
+        this.token = response.data.token
+        this.user = response.data.user
+        localStorage.setItem('token', this.token)
+        localStorage.setItem('user', JSON.stringify(this.user))
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
         return data
       } catch (error) {
         const responseData = error?.response?.data
@@ -107,6 +112,11 @@ const store = createStore({
     },
     cancelEdit({ commit }) {
       commit('cancelEdit')
+    }, initialize() {
+      const token = localStorage.getItem('token')
+      if (token) {
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      }
     }
   },
 })
