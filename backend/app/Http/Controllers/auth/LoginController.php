@@ -38,6 +38,8 @@ class LoginController extends Controller
         $token = $user->createToken('web-app')->plainTextToken;
 
         return response()->json([
+            'success' => true,
+            'Message' => 'Logged in successfully',
             'user'  => $user,
             'token' => $token,
         ]);

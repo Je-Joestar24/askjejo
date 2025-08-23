@@ -112,7 +112,8 @@ const store = createStore({
     },
     cancelEdit({ commit }) {
       commit('cancelEdit')
-    }, initialize() {
+    }, 
+    initialize() {
       const token = localStorage.getItem('token')
       if (token) {
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
