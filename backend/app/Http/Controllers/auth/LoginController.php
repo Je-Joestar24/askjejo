@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\AuthService;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,27 +21,29 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $validated = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required'
+        // Validate input
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        [$user, $token] = $this->authService->authenticate($validated);
+        // Find user manually
+        $user = User::where('email', $data['email'])->first();
 
-        if (! $user) {
-            return response()->json(['message' => 'Invalid credentials.'], 401);
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        // 👇 Persist the login to the session
-        Auth::login($user);
+        // Create token (no Auth facade used)
+        $token = $user->createToken('web-app')->plainTextToken;
 
         return response()->json([
-            'success'      => true,
-            'message'      => 'Login successful.',
-            'auth_type'    => 'session',
-            'user'         => new UserResource($user),
+            'user'  => $user,
+            'token' => $token,
         ]);
     }
+
+
 
     public function logout(Request $request)
     {
