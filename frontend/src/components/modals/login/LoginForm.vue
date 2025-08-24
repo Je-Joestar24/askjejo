@@ -9,7 +9,7 @@
     <div v-if="error && !result" class="loginmodal__message error" aria-live="polite" @click.prevent="error = null">
         {{ error }}
     </div>
-    
+
     <form class="loginmodal__form" autocomplete="off" @submit.prevent="loginNow">
         <div class="loginmodal__field">
             <label for="login-email" class="loginmodal__label">Email</label>
@@ -27,8 +27,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
+const router = useRouter()
 const store = useStore()
 const state = store.state
 const login_form = ref({ email: '', password: '' })
@@ -73,6 +75,7 @@ const loginNow = async () => {
             clearForm()
             toggleModal()
             store.dispatch('initialize')
+            router.push({ name: 'ask' })
         } else {
             error.value = res.message
         }
