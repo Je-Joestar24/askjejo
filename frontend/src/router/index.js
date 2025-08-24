@@ -5,22 +5,29 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes
 })
-/* 
+
 router.beforeEach((to, from, next) => {
+  // Check localStorage for authentication
+  const token = localStorage.getItem('token')
+  const user = localStorage.getItem('user')
+  const isAuthenticated = token && user
 
-  const name = `${to.name?.toString()} Page`
+  // Check if route requires authentication
+  const requiresAuth = to.meta.requiresAuth
+  const requiresGuest = to.meta.requiresGuest
 
-  if (requiresAuth && !logged_user.value) {
-    // Redirect to home if not authenticated
+  if (requiresAuth && !isAuthenticated) {
+    // Route requires auth but user not authenticated, redirect to home
     return next({ name: 'home' })
   }
-  if (to.meta.requiresGuest && logged_user.value) {
-    return next('/search') // or redirect to dashboard
+
+  if (requiresGuest && isAuthenticated) {
+    // Route requires guest but user is authenticated, redirect to ask
+    return next({ name: 'ask' })
   }
 
   // Continue navigation
   next()
 })
- */
 
 export default router
