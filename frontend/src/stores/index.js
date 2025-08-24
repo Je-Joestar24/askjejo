@@ -53,12 +53,29 @@ const store = createStore({
       }
     },
     initializeUser(state, user) {
-      if (!user) return;
+      if (!user || typeof user !== 'object') return;
+      
+      // Destructure only needed properties for better performance
+      const { name, email } = user;
+      
+      // Validate required fields exist
+      if (!name || !email) return;
+      
+      // Update user state
       state.user.logged_user = user;
-      state.profile.originalData.name = user.name
-      state.profile.originalData.email = user.email
-      state.profile.profileData.name = user.name
-      state.profile.profileData.email = user.email
+      
+      // Batch profile updates for better performance
+      const profileUpdates = { name, email };
+      Object.assign(state.profile.originalData, profileUpdates);
+      Object.assign(state.profile.profileData, profileUpdates);
+    },
+    userCleanup(state){
+      state.profile.originalData.email = ""
+      state.profile.originalData.name = ""
+      state.profile.profileData.email = ""
+      state.profile.profileData.name = ""
+      localStorage.removeItem("user")
+      localStorage.removeItem("token")
     }
   },
   actions: {
@@ -111,6 +128,32 @@ const store = createStore({
         }
       }
     },
+    async logout({ commit, state }) {
+      try {
+        // Call logout API first
+        await state.api.post('/api/auth/logout')
+        
+        // Clear authorization header
+        delete state.api.defaults.headers.common['Authorization']
+        
+        // Clean up state and localStorage
+        commit('userCleanup')
+        
+        return { success: true, message: 'Logged out successfully' }
+      } catch (error) {
+        console.error('Logout API call failed:', error)
+        
+        // Even if API fails, clean up locally to ensure user is logged out
+        delete state.api.defaults.headers.common['Authorization']
+        commit('userCleanup')
+        
+        return { 
+          success: false, 
+          message: 'Logout API failed, but local cleanup completed',
+          error: error?.response?.data?.message || 'Unknown error'
+        }
+      }
+    },
     togglePasswordChange({ commit, state }) {
       commit('togglePasswordChange')
       if (!state.profile.showPasswordChange) {
@@ -127,15 +170,31 @@ const store = createStore({
     cancelEdit({ commit }) {
       commit('cancelEdit')
     },
-    initialize({ commit }) {
-      const token = localStorage.getItem('token')
-      const user = JSON.parse(localStorage.getItem('user'))
+    initialize({ commit, state }) {
+      try {
+        const token = localStorage.getItem('token')
+        const userStr = localStorage.getItem('user')
 
-      if (token) api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        if (token) {
+          state.api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        }
 
-      if (user) {
-        commit('initializeUser', user)
-
+        if (userStr) {
+          try {
+            const user = JSON.parse(userStr)
+            commit('initializeUser', user)
+          } catch (parseError) {
+            console.error('Failed to parse user from localStorage:', parseError)
+            // Clear corrupted data
+            localStorage.removeItem('user')
+            localStorage.removeItem('token')
+          }
+        }
+      } catch (error) {
+        console.error('Initialization failed:', error)
+        // Clear potentially corrupted data
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
       }
     }
   },
