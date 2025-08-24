@@ -72,6 +72,7 @@ const loginNow = async () => {
         if (res.success) {
             clearForm()
             toggleModal()
+            store.dispatch('initialize')
         } else {
             error.value = res.message
         }
