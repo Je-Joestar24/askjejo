@@ -47,9 +47,9 @@ const store = createStore({
       state.profile.isEditing = false
       state.profile.showPasswordChange = false
 
-      if (user.logged_user) {
-        state.profileData.name = state.originalData.name
-        state.profileData.email = state.originalData.email
+      if (state.user.logged_user) {
+        state.profile.profileData.name = state.profile.originalData.name
+        state.profile.profileData.email = state.profile.originalData.email
       }
     },
     initializeUser(state, user) {
