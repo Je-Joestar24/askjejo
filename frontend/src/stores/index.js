@@ -27,7 +27,7 @@ const store = createStore({
         token: ''
       },
       api: api,
-      loading: false
+      loading: false,
     }
   },
   mutations: {
@@ -54,22 +54,22 @@ const store = createStore({
     },
     initializeUser(state, user) {
       if (!user || typeof user !== 'object') return;
-      
+
       // Destructure only needed properties for better performance
       const { name, email } = user;
-      
+
       // Validate required fields exist
       if (!name || !email) return;
-      
+
       // Update user state
       state.user.logged_user = user;
-      
+
       // Batch profile updates for better performance
       const profileUpdates = { name, email };
       Object.assign(state.profile.originalData, profileUpdates);
       Object.assign(state.profile.profileData, profileUpdates);
     },
-    userCleanup(state){
+    userCleanup(state) {
       state.profile.originalData.email = ""
       state.profile.originalData.name = ""
       state.profile.profileData.email = ""
@@ -129,29 +129,25 @@ const store = createStore({
       }
     },
     async logout({ commit, state }) {
+      if (state.loading) return
+      state.loading = true;
+
       try {
-        // Call logout API first
-        await state.api.post('/api/auth/logout')
-        
-        // Clear authorization header
         delete state.api.defaults.headers.common['Authorization']
-        
-        // Clean up state and localStorage
         commit('userCleanup')
-        
         return { success: true, message: 'Logged out successfully' }
       } catch (error) {
         console.error('Logout API call failed:', error)
-        
-        // Even if API fails, clean up locally to ensure user is logged out
         delete state.api.defaults.headers.common['Authorization']
         commit('userCleanup')
-        
-        return { 
-          success: false, 
+
+        return {
+          success: false,
           message: 'Logout API failed, but local cleanup completed',
           error: error?.response?.data?.message || 'Unknown error'
         }
+      } finally {
+        state.loading = false
       }
     },
     togglePasswordChange({ commit, state }) {
