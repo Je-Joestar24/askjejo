@@ -52,8 +52,13 @@ const store = createStore({
         state.profileData.email = state.originalData.email
       }
     },
-    initializeProfile(state){
-      
+    initializeUser(state, user) {
+      if (!user) return;
+      state.user.logged_user = user;
+      state.profile.originalData.name = user.name
+      state.profile.originalData.email = user.email
+      state.profile.profileData.name = user.name
+      state.profile.profileData.email = user.email
     }
   },
   actions: {
@@ -122,14 +127,15 @@ const store = createStore({
     cancelEdit({ commit }) {
       commit('cancelEdit')
     },
-    initialize({ state }) {
+    initialize({ commit }) {
       const token = localStorage.getItem('token')
       const user = JSON.parse(localStorage.getItem('user'))
 
       if (token) api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       if (user) {
-        state.user.logged_user = user;
+        commit('initializeUser', user)
+
       }
     }
   },
