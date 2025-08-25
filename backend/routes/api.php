@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\SignupUserController;
@@ -17,4 +18,5 @@ Route::middleware('auth:sanctum')->group(function () {
             'message' => 'Authorized'
         ]);
     });
+    Route::put('/profile/update', [ProfileController::class, 'update']);
 });

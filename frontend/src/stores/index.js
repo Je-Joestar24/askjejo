@@ -68,8 +68,9 @@ const store = createStore({
         state.profile.profileData.email = state.profile.originalData.email
       }
     },
-    updateUser(state) {
+    updateUser(state, user) {
       Object.assign(state.profile.originalData, state.profile.profileData)
+      localStorage.setItem('user', JSON.stringify(user))
     },
     initializeUser(state, user) {
       if (!user || typeof user !== 'object') return;
@@ -212,8 +213,38 @@ const store = createStore({
         localStorage.removeItem('user')
         localStorage.removeItem('token')
       }
+    }, 
+    async updateUser({ commit }, form) {
+      try {
+
+        const response = await axios.put(`/api/profile/update`, form, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+
+        // backend returns updated user
+        const updatedUser = response.data.user
+
+        // store only id, name, email in localStorage
+        commit('updateUser', updatedUser)
+
+        return {
+          success: true,
+          message: response.data.message
+        }
+      } catch (error) {
+        if (error.response?.status === 422) {
+          return {
+            success: false,
+            errors: error.response.data.errors
+          }
+        }
+
+        throw error
+      }
     }
-  },
+  }
 })
 
 export default store
