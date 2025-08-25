@@ -7,9 +7,6 @@
         <button @click.prevent="toggleModal('signup')" class="header__btn header__btn--primary" role="button">
             Sign Up
         </button>
-        <button @click.prevent="logoutUser" class="header__btn header__btn--primary" role="button">
-            Logout
-        </button>
     </div>
 
     <!-- Mobile menu toggle (hidden on desktop) -->
@@ -29,10 +26,5 @@ const store = useStore()
 
 const toggleModal = (active = '') => {
   store.dispatch('setActiveModal', active)
-}
-
-const logoutUser = async () => {
-    const response = await store.dispatch('logout')
-    if(response.success) store.dispatch('initialize')
 }
 </script>
