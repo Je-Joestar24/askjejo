@@ -16,22 +16,29 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'], 
-            // expects password_confirmation field if provided
+            'password' => ['nullable', 'string'],
+            'new_password' => ['nullable', 'string', 'min:8'],
         ]);
 
         // update fields
         $user->name = $validated['name'];
         $user->email = $validated['email'];
 
-        // only update password if provided
-        if (!empty($validated['password'])) {
-            $user->password = Hash::make($validated['password']);
+        // handle password change
+        if (!empty($validated['password']) && !empty($validated['new_password'])) {
+            if (!Hash::check($validated['password'], $user->password)) {
+                return response()->json([
+                    'message' => 'Current password is incorrect'
+                ]);
+            }
+
+            $user->password = Hash::make($validated['new_password']);
         }
 
         $user->save();
 
         return response()->json([
+            'success' => true,
             'message' => 'Profile updated successfully',
             'user' => $user,
         ]);
