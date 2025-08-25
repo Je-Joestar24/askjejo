@@ -31,14 +31,17 @@ const store = createStore({
     }
   },
   getters: {
-    hasProfileChanges: (state) => {
+    hasProfileChanges(state) {
       return (
         state.profile.profileData.name !== state.profile.originalData.name ||
         state.profile.profileData.email !== state.profile.originalData.email
       )
     },
-    hasPasswordChanges: (state) => {
+    hasPasswordChanges(state) {
       return state.profile.showPasswordChange && state.profile.passwordData.newPassword.length > 0
+    },
+    hasChanges(state, getters) {
+      return getters.hasProfileChanges || getters.hasPasswordChanges
     }
   },
   mutations: {
