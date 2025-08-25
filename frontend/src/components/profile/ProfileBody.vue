@@ -16,13 +16,22 @@ import Cta from './Cta.vue'
 
 const store = useStore()
 const state = store.state.profile
+const getters = store.getters
 
 const togglePasswordChange = () => {
     store.dispatch('togglePasswordChange')
 }
 const user = JSON.parse(localStorage.getItem('user'))
 
-const updateUser = () => {
-    store.dispatch('updateUser', { id: user?.id, email: state.profileData.email, name: state.profileData.name })
+const updateUser = async () => {
+    const form = { id: user?.id, email: state.profileData.email, name: state.profileData.name }
+    if(getters.hasPasswordChanges){
+        form['password'] = state.passwordData.currentPassword
+        form['new_password'] = state.passwordData.newPassword
+    }
+    const response = await store.dispatch('updateUser', form)
+    console.log(response)
+    
+    store.commit('setMessage', {message: response.message, type: 'success' ? response.success : 'error'})
 }
 </script>
