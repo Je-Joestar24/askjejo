@@ -18,9 +18,6 @@ const store = useStore()
 const state = store.state.profile
 const getters = store.getters
 
-const togglePasswordChange = () => {
-    store.dispatch('togglePasswordChange')
-}
 const user = JSON.parse(localStorage.getItem('user'))
 
 const updateUser = async () => {
