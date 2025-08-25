@@ -69,7 +69,6 @@ const store = createStore({
       }
     },
     updateUser(state) {
-
       Object.assign(state.profile.originalData, state.profile.profileData)
     },
     initializeUser(state, user) {
