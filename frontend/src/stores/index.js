@@ -30,12 +30,25 @@ const store = createStore({
       loading: false,
     }
   },
+  getters: {
+    hasProfileChanges: (state) => {
+      return (
+        state.profile.profileData.name !== state.profile.originalData.name ||
+        state.profile.profileData.email !== state.profile.originalData.email
+      )
+    },
+    hasPasswordChanges: (state) => {
+      return state.profile.showPasswordChange && state.profile.passwordData.newPassword.length > 0
+    }
+  },
   mutations: {
     setActiveModal(state, active) {
       state.activeModal = active
-    }, togglePasswordChange(state) {
+    },
+    togglePasswordChange(state) {
       state.profile.showPasswordChange = !state.profile.showPasswordChange
-    }, toggleEdit(state) {
+    },
+    toggleEdit(state) {
       state.profile.isEditing = true
       state.profile.showPasswordChange = false
     },
@@ -51,6 +64,10 @@ const store = createStore({
         state.profile.profileData.name = state.profile.originalData.name
         state.profile.profileData.email = state.profile.originalData.email
       }
+    },
+    updateUser(state) {
+
+      Object.assign(state.profile.originalData, state.profile.profileData)
     },
     initializeUser(state, user) {
       if (!user || typeof user !== 'object') return;
@@ -70,10 +87,10 @@ const store = createStore({
       Object.assign(state.profile.profileData, profileUpdates);
     },
     userCleanup(state) {
-      const cleanData = {email: "", name: ""}
+      const cleanData = { email: "", name: "" }
       Object.assign(state.profile.originalData, cleanData)
       Object.assign(state.profile.profileData, cleanData)
-      
+
       state.user.logged_user = null
       localStorage.removeItem("user")
       localStorage.removeItem("token")
