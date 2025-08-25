@@ -214,10 +214,10 @@ const store = createStore({
         localStorage.removeItem('token')
       }
     }, 
-    async updateUser({ commit }, form) {
+    async updateUser({ commit, state }, form) {
       try {
 
-        const response = await axios.put(`/api/profile/update`, form, {
+        const response = await state.api.put(`/api/profile/update`, form, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
