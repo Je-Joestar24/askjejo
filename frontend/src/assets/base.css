@@ -69,6 +69,12 @@
   --theme-glow-heavy: rgba(37, 99, 235, 0.2);
   --theme-globe: #dbeafe;
   
+  /* Notification Colors */
+  --theme-notification-success: var(--theme-success);
+  --theme-notification-error: var(--theme-error);
+  --theme-notification-warning: var(--theme-warning);
+  --theme-notification-info: var(--theme-primary);
+  
   /* Animation Variables */
   --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --theme-transition-fast: all 0.15s ease;
@@ -123,6 +129,12 @@
     /* Special Effects */
     --theme-glow: rgba(96, 165, 250, 0.15);
     --theme-glow-heavy: rgba(96, 165, 250, 0.25);
+    
+    /* Notification Colors - Dark Mode */
+    --theme-notification-success: var(--theme-success);
+    --theme-notification-error: var(--theme-error);
+    --theme-notification-warning: var(--theme-warning);
+    --theme-notification-info: var(--theme-primary);
   }
 }
 
