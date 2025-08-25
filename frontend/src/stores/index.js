@@ -70,10 +70,11 @@ const store = createStore({
       Object.assign(state.profile.profileData, profileUpdates);
     },
     userCleanup(state) {
-      state.profile.originalData.email = ""
-      state.profile.originalData.name = ""
-      state.profile.profileData.email = ""
-      state.profile.profileData.name = ""
+      const cleanData = {email: "", name: ""}
+      Object.assign(state.profile.originalData, cleanData)
+      Object.assign(state.profile.profileData, cleanData)
+      
+      state.user.logged_user = null
       localStorage.removeItem("user")
       localStorage.removeItem("token")
     }
