@@ -28,6 +28,10 @@ const store = createStore({
       },
       api: api,
       loading: false,
+      notif: {
+        type: '',
+        message: '',
+      }
     }
   },
   getters: {
@@ -97,6 +101,14 @@ const store = createStore({
       state.user.logged_user = null
       localStorage.removeItem("user")
       localStorage.removeItem("token")
+    },
+    setMessage(state, param) {
+      if (!param) {
+        Object.assign(state.notif, { type: '', message: '' })
+        return
+      }
+
+      Object.assign(state.notif, param)
     }
   },
   actions: {
@@ -213,11 +225,13 @@ const store = createStore({
         localStorage.removeItem('user')
         localStorage.removeItem('token')
       }
-    }, 
+    },
     async updateUser({ commit, state }, form) {
+      state.loading = true
+      let response
       try {
 
-        const response = await state.api.put(`/api/profile/update`, form, {
+        response = await state.api.put(`/api/profile/update`, form, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -228,6 +242,10 @@ const store = createStore({
 
         // store only id, name, email in localStorage
         commit('updateUser', updatedUser)
+        if (response.data.success) {
+          commit('cancelEdit')
+          commit('resetPasswordData')
+        }
 
         return {
           success: true,
@@ -237,11 +255,11 @@ const store = createStore({
         if (error.response?.status === 422) {
           return {
             success: false,
-            errors: error.response.data.errors
+            message: response.data.message
           }
         }
-
-        throw error
+      } finally {
+        state.loading = false
       }
     }
   }
