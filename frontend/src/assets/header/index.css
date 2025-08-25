@@ -5,6 +5,7 @@
 @import './nav.css';
 @import './navlinks.css';
 @import './responsive.css';
+@import './profile.css';
 
 /* Header Navigation Styles
    - Fixed position with z-index 25
