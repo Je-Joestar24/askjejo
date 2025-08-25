@@ -35,9 +35,11 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 const store = useStore()
+const router = useRouter()
 const state = store.state
 const signup = ref({
     email: '',
@@ -56,6 +58,15 @@ const error = ref(null)
 const isValidEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
+}
+
+const login = async (email, password) => {
+    await store.dispatch('login', {
+        email: email,
+        password: password
+    })
+
+    store.dispatch('initialize')
 }
 
 const clearForm = () => {
@@ -105,7 +116,9 @@ const signupNow = async () => {
 
         result.value = res
         if (res.success) {
+            await login(signup.value.email, signup.value.password)
             clearForm()
+            router.push({ name: 'ask' })
             toggleModal()
         } else {
             error.value = res.message
