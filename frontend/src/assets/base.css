@@ -5,6 +5,7 @@
 @import './modals/index.css';
 @import './profile/index.css';
 @import './loading/index.css';
+@import './notification/index.css';
 
 :root {
   /* Container widths */

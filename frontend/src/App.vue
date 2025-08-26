@@ -6,6 +6,7 @@ import FooterV from './components/footer/Footer.vue';
 import Modals from './components/modals/Modals.vue';
 import Loading from './composables/loading/Loading.vue';
 import { onMounted } from 'vue';
+import Notification from './components/notif/Notification.vue';
 
 const store = useStore()
 const state = store.state
@@ -18,4 +19,5 @@ onMounted(() => { store.dispatch('initialize') })
   <FooterV />
   <Modals />
   <Loading :show="state.loading" />
+  <Notification/>
 </template>
