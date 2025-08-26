@@ -1,0 +1,23 @@
+/* Close */
+.notif__close {
+    background: none;
+    border: none;
+    color: currentColor;
+    cursor: pointer;
+    padding: .25rem;
+    border-radius: .375rem;
+    display: grid;
+    place-items: center;
+    opacity: .85;
+    transition: var(--theme-transition);
+}
+
+.notif__close:hover {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+.notif__close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
