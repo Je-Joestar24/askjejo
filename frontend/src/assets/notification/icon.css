@@ -1,0 +1,8 @@
+/* Icon */
+.notif__icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    opacity: .95;
+}

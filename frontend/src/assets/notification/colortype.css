@@ -1,0 +1,15 @@
+/* Color types */
+.notif--info {
+    background: var(--info-notif);
+    border-color: var(--info-notif);
+}
+
+.notif--success {
+    background: var(--success-notif);
+    border-color: var(--success-notif);
+}
+
+.notif--error {
+    background: var(--error-notif);
+    border-color: var(--error-notif);
+}

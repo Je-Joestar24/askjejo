@@ -1,0 +1,23 @@
+/* Small screens */
+@media (max-width: 480px) {
+
+    .notif--top-right,
+    .notif--top-left,
+    .notif--top-center {
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -8px) scale(0.98);
+    }
+
+    .notif--bottom-right,
+    .notif--bottom-left,
+    .notif--bottom-center {
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, 8px) scale(0.98);
+    }
+
+    .notif {
+        max-width: calc(100vw - 2rem);
+    }
+}

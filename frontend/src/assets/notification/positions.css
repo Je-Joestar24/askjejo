@@ -1,0 +1,32 @@
+/* Positions */
+.notif--top-right {
+    top: 1rem;
+    right: 1rem;
+}
+
+.notif--top-left {
+    top: 1rem;
+    left: 1rem;
+}
+
+.notif--bottom-right {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.notif--bottom-left {
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.notif--top-center {
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, -8px) scale(0.98);
+}
+
+.notif--bottom-center {
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, 8px) scale(0.98);
+}
