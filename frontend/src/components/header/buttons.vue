@@ -7,16 +7,6 @@
         <button @click.prevent="toggleModal('signup')" class="header__btn header__btn--primary" role="button">
             Sign Up
         </button>
-        <button @click.prevent="toggleMessage('Error', 'error')" class="header__btn header__btn--primary" role="button">
-            Error
-        </button>
-        <button @click.prevent="toggleMessage('Success', 'success')" class="header__btn header__btn--primary"
-            role="button">
-            Success
-        </button>
-        <button @click.prevent="toggleMessage('Info', 'info')" class="header__btn header__btn--primary" role="button">
-            Info
-        </button>
     </div>
 
     <!-- Mobile menu toggle (hidden on desktop) -->
@@ -36,9 +26,5 @@ const store = useStore()
 
 const toggleModal = (active = '') => {
     store.dispatch('setActiveModal', active)
-}
-
-const toggleMessage = (message, type) => {
-    store.commit('setMessage', { message: message, type: type })
 }
 </script>

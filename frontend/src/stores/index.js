@@ -31,7 +31,8 @@ const store = createStore({
       notif: {
         type: '',
         message: '',
-      }
+      },
+      routeMessage: ''
     }
   },
   getters: {
@@ -109,6 +110,10 @@ const store = createStore({
       }
 
       Object.assign(state.notif, param)
+    },
+    setRouteMessage(state, message) {
+      if (!message) state.routeMessage = ''
+      state.routeMessage = message
     }
   },
   actions: {
