@@ -73,15 +73,18 @@ const loginNow = async () => {
         result.value = res
         if (res.success) {
             clearForm()
-            toggleModal()
+            store.commit('setMessage', { message: res.message, type: 'success' })
             store.dispatch('initialize')
             router.push({ name: 'ask' })
+            toggleModal()
         } else {
             error.value = res.message
+            store.commit('setMessage', { message: res.message, type: 'error' })
         }
     } catch (err) {
         console.error('Login failed:', err)
         error.value = err?.message || 'Something went wrong, please try again.'
+        store.commit('setMessage', { message: res.err?.message || 'Something went wrong, please try again.', type: 'error' })
     } finally {
         state.loading = false
     }
