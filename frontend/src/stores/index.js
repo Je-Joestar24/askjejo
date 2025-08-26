@@ -175,14 +175,13 @@ const store = createStore({
         commit('userCleanup')
         return { success: true, message: 'Logged out successfully' }
       } catch (error) {
-        console.error('Logout API call failed:', error)
+        console.error('Logout failed:', error)
         delete state.api.defaults.headers.common['Authorization']
         commit('userCleanup')
 
         return {
           success: false,
-          message: 'Logout API failed, but local cleanup completed',
-          error: error?.response?.data?.message || 'Unknown error'
+          message: `Logout failed ${error?.response?.data?.message || 'Unknown error'}`
         }
       } finally {
         state.loading = false
