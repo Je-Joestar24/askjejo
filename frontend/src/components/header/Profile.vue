@@ -8,13 +8,16 @@
         <div class="nav__profile-dropdown">
             <router-link class="nav__profile-btn" aria-label="Profile" to="/profile">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 10a6 6 0 0 0-6 6v2h12v-2a6 6 0 0 0-6-6z" fill="currentColor"/>
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 10a6 6 0 0 0-6 6v2h12v-2a6 6 0 0 0-6-6z"
+                        fill="currentColor" />
                 </svg>
                 Profile
             </router-link>
             <button class="nav__profile-btn" aria-label="Logout" @click.prevent="logoutUser">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M8 1a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1zM3.732 4.268a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1-1.414 1.414L5.414 6H3a1 1 0 0 1 0-2h2.414L3.732 2.268a1 1 0 0 1 0-1.414z" fill="currentColor"/>
+                    <path
+                        d="M8 1a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1zM3.732 4.268a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1-1.414 1.414L5.414 6H3a1 1 0 0 1 0-2h2.414L3.732 2.268a1 1 0 0 1 0-1.414z"
+                        fill="currentColor" />
                 </svg>
                 Logout
             </button>
@@ -33,7 +36,9 @@ const logoutUser = async () => {
     const response = await store.dispatch('logout')
     if (response.success) {
         store.dispatch('initialize')
+        store.commit('setMessage', { message: response.message, type: 'success' })
         router.push({ name: 'home' })
-    }
+    } else store.commit('setMessage', { message: response.message, type: 'error' })
+
 }
 </script>
