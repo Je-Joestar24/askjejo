@@ -6,6 +6,7 @@
 @import './profile/index.css';
 @import './loading/index.css';
 @import './notification/index.css';
+@import './message/index.css';
 
 :root {
   /* Container widths */
@@ -21,25 +22,25 @@
   --theme-success: #10b981;
   --theme-warning: #f59e0b;
   --theme-error: #ef4444;
-  
+
   /* Background Colors */
   --theme-bg: #ffffff;
   --theme-bg-secondary: #f8fafc;
   --theme-bg-tertiary: #f1f5f9;
   --theme-bg-card: rgba(255, 255, 255, 0.8);
   --theme-bg-overlay: rgba(255, 255, 255, 0.9);
-  
+
   /* Text Colors */
   --theme-text: #0f172a;
   --theme-text-secondary: #475569;
   --theme-text-muted: #64748b;
   --theme-text-inverse: #ffffff;
-  
+
   /* Border Colors */
   --theme-border: #e2e8f0;
   --theme-border-secondary: #cbd5e1;
   --theme-border-accent: rgba(37, 99, 235, 0.2);
-  
+
   /* Shadow System */
   --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --theme-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -49,33 +50,33 @@
   --theme-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.12);
   --theme-shadow-shine: 0 0 20px rgba(37, 99, 235, 0.15);
   --theme-shadow-glow: 0 0 30px rgba(37, 99, 235, 0.2);
-  
+
   /* Button Colors */
   --theme-btn: var(--theme-primary);
   --theme-btn-hover: #1d4ed8;
   --theme-btn-secondary: transparent;
   --theme-btn-secondary-hover: var(--theme-primary);
-  
+
   /* Card System */
   --theme-card-radius: 1.5rem;
   --card-radius: 1.5rem;
   --theme-card-shadow: var(--theme-shadow);
   --card-shadow: var(--theme-shadow);
   --card-shadow-hover: var(--theme-shadow-lg);
-  
+
   /* Special Effects */
   --theme-blur: blur(15px);
   --theme-blur-light: blur(10px);
   --theme-glow: rgba(37, 99, 235, 0.1);
   --theme-glow-heavy: rgba(37, 99, 235, 0.2);
   --theme-globe: #dbeafe;
-  
+
   /* Notification Colors */
   --theme-notification-success: var(--theme-success);
   --theme-notification-error: var(--theme-error);
   --theme-notification-warning: var(--theme-warning);
   --theme-notification-info: var(--theme-primary);
-  
+
   /* Animation Variables */
   --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --theme-transition-fast: all 0.15s ease;
@@ -92,25 +93,25 @@
     --theme-success: #34d399;
     --theme-warning: #fbbf24;
     --theme-error: #f87171;
-    
+
     /* Background Colors */
     --theme-bg: #0f172a;
     --theme-bg-secondary: #1e293b;
     --theme-bg-tertiary: #334155;
     --theme-bg-card: rgba(30, 41, 59, 0.8);
     --theme-bg-overlay: rgba(15, 23, 42, 0.9);
-    
+
     /* Text Colors */
     --theme-text: #f8fafc;
     --theme-text-secondary: #cbd5e1;
     --theme-text-muted: #94a3b8;
     --theme-text-inverse: #0f172a;
-    
+
     /* Border Colors */
     --theme-border: #334155;
     --theme-border-secondary: #475569;
     --theme-border-accent: rgba(96, 165, 250, 0.3);
-    
+
     /* Shadow System */
     --theme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
     --theme-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -120,17 +121,17 @@
     --theme-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.4);
     --theme-shadow-shine: 0 0 20px rgba(96, 165, 250, 0.2);
     --theme-shadow-glow: 0 0 30px rgba(96, 165, 250, 0.3);
-    
+
     /* Button Colors */
     --theme-btn: var(--theme-primary);
     --theme-btn-hover: #3b82f6;
     --theme-btn-secondary: transparent;
     --theme-btn-secondary-hover: var(--theme-primary);
-    
+
     /* Special Effects */
     --theme-glow: rgba(96, 165, 250, 0.15);
     --theme-glow-heavy: rgba(96, 165, 250, 0.25);
-    
+
     /* Notification Colors - Dark Mode */
     --theme-notification-success: var(--theme-success);
     --theme-notification-error: var(--theme-error);
@@ -169,7 +170,8 @@ a {
   color: inherit;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
