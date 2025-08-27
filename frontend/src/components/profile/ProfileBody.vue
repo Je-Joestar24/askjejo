@@ -27,7 +27,6 @@ const updateUser = async () => {
         form['new_password'] = state.passwordData.newPassword
     }
     const response = await store.dispatch('updateUser', form)
-    console.log(response)
     
     store.commit('setMessage', {message: response.message, type: 'success' ? response.success : 'error'})
 }
