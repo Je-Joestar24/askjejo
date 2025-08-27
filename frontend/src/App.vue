@@ -7,7 +7,7 @@ import Modals from './components/modals/Modals.vue';
 import Loading from './components/loading/Loading.vue';
 import { onMounted } from 'vue';
 import Notification from './components/notif/Notification.vue';
-import RouteMessage from './components/routemessage/RouteMessage.vue';
+import RouteMessage from './components/notif/RouteMessage.vue';
 
 const store = useStore()
 const state = store.state

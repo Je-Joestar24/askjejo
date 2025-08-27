@@ -7,6 +7,9 @@
         <button @click.prevent="toggleModal('signup')" class="header__btn header__btn--primary" role="button">
             Sign Up
         </button>
+        <button @click.prevent="test" class="header__btn header__btn--primary" role="button">
+            Test Message
+        </button>
     </div>
 
     <!-- Mobile menu toggle (hidden on desktop) -->
@@ -23,6 +26,10 @@
 import { useStore } from 'vuex'
 
 const store = useStore()
+
+const test = () => {
+    store.commit('setRouteMessage', "Testosterone")
+}
 
 const toggleModal = (active = '') => {
     store.dispatch('setActiveModal', active)
