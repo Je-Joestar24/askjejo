@@ -4,7 +4,7 @@ import { useStore } from 'vuex';
 import Navigation from './components/header/Navigation.vue';
 import FooterV from './components/footer/Footer.vue';
 import Modals from './components/modals/Modals.vue';
-import Loading from './composables/loading/Loading.vue';
+import Loading from './components/loading/Loading.vue';
 import { onMounted } from 'vue';
 import Notification from './components/notif/Notification.vue';
 
