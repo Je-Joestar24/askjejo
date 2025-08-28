@@ -26,17 +26,20 @@ Tech Stack
   - Node.js runtime in frontend container
   - Optional: Nginx reverse proxy (not included yet; see Notes)
 
-- Planned:
-  - Groq API integration (to be implemented later; see Roadmap/Notes)
+- Integrations:
+  - Groq API (LLAMA/LLAMA-4-scout) for chat responses
+  - marked (frontend) for safe Markdown-to-HTML rendering of AI replies
 
 Architecture
 
 - frontend/ — Vue SPA built with Vite
   - Uses Axios to call the backend at `http://localhost:9000`
   - Sanctum flow via `/sanctum/csrf-cookie` then API calls with credentials
+  - Renders AI responses with `marked` (install with `npm i marked`)
 - backend/ — Laravel application
   - Exposes API over PHP built-in server on port 9000 (Docker container)
   - PostgreSQL connection configured via environment variables
+  - Integrates with Groq via a service adapter and controller using model `LLAMA/LLAMA-4-scout-17b-16e-instruct`
 - docker-compose.yaml — Orchestrates `backend`, `frontend`, and `db` services
 
 Ports
@@ -111,7 +114,10 @@ Testing
 Notes
 
 - Nginx: The current Docker setup serves Laravel via PHP’s built-in server on port 9000. If you need an Nginx reverse proxy (e.g., TLS termination, static asset offloading), add an `nginx` service to `docker-compose.yaml` and proxy to `backend:9000`.
-- Groq API: Planned integration; no implementation is present yet. To integrate, add a secure backend service class or controller to call Groq, configure credentials via `.env`, and expose endpoints consumed by the Vue app.
+- Groq API: Integrated. The backend calls Groq with model `LLAMA/LLAMA-4-scout`. Configure your credentials in `backend/.env`:
+  - `GROQ_API_KEY=your_groq_api_key`
+  - Optional: `GROQ_MODEL=LLAMA/LLAMA-4-scout`
+  The frontend displays model responses as Markdown using `marked`.
 - CORS/CSRF: Ensure CORS is configured to allow origin `http://localhost:5173` and that `withCredentials` is enabled on Axios requests (already set in `frontend/src/config/api.js`).
 
 Troubleshooting
@@ -125,10 +131,33 @@ Troubleshooting
 
 Roadmap
 
-- Implement Groq API integration (secure backend adapter + env-managed credentials).
 - Add Nginx reverse proxy service for production-like setup and TLS termination.
 - Introduce API versioning and OpenAPI/Swagger documentation.
 - Harden CORS/CSRF/session settings for production domains.
+
+Groq API Integration
+
+- Backend
+  - Service: a dedicated adapter calls Groq using `GROQ_API_KEY` and the model `LLAMA/LLAMA-4-scout`.
+  - Example env in `backend/.env`:
+    - `GROQ_API_KEY=...`
+    - `GROQ_MODEL=LLAMA/LLAMA-4-scout`
+  - Example endpoint (subject to change): `POST /api/ask` with JSON `{ "message": "..." }` returns `{ reply: string, meta: {...} }`.
+
+- Frontend
+  - Install and use `marked` to render assistant replies:
+    ```sh
+    cd frontend && npm i marked
+    ```
+  - Typical usage:
+    ```js
+    import { marked } from 'marked'
+    const html = marked.parse(replyMarkdown)
+    ```
+
+Model
+
+- Current model: `LLAMA/LLAMA-4-scout` (via Groq). You can override with `GROQ_MODEL` in the backend environment.
 
 License
 
