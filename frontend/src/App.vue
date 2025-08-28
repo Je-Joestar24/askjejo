@@ -1,5 +1,5 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import { useStore } from 'vuex';
 import Navigation from './components/header/Navigation.vue';
 import FooterV from './components/footer/Footer.vue';
@@ -11,13 +11,14 @@ import RouteMessage from './components/notif/RouteMessage.vue';
 
 const store = useStore()
 const state = store.state
+const router = useRoute()
 onMounted(() => { store.dispatch('initialize') })
 </script>
 
 <template>
-  <Navigation />
+  <Navigation/>
   <RouterView />
-  <FooterV />
+  <FooterV v-if="router.name != 'ask'" />
   <Modals />
   <Loading :show="state.loading" />
   <Notification />

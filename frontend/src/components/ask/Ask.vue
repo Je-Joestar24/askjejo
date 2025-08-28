@@ -32,7 +32,7 @@
             </nav>
 
             <footer class="ask__sidebar-footer" aria-label="Sidebar actions">
-                <button class="ask__sidebar-btn" aria-label="Settings">Settings</button>
+                <button class="ask__sidebar-btn" aria-label="Settings">Profile</button>
                 <button class="ask__sidebar-btn" aria-label="Logout">Logout</button>
             </footer>
         </aside>
@@ -45,7 +45,6 @@
                 </div>
                 <div class="ask__chat-actions">
                     <button class="ask__chat-action" aria-label="Rename chat">Rename</button>
-                    <button class="ask__chat-action" aria-label="Share chat">Share</button>
                     <button class="ask__chat-action danger" aria-label="Delete chat">Delete</button>
                 </div>
             </header>
@@ -87,11 +86,6 @@
             <form class="ask__composer" role="form" aria-label="Message composer" autocomplete="off">
                 <div class="ask__input-wrapper">
                     <textarea class="ask__input" rows="1" placeholder="Type your message..." aria-label="Type your message"></textarea>
-                    <div class="ask__input-tools" aria-label="Composer tools">
-                        <button type="button" class="ask__tool" aria-label="Attach file">Attach</button>
-                        <button type="button" class="ask__tool" aria-label="Insert code">Code</button>
-                        <button type="button" class="ask__tool" aria-label="Voice input">Mic</button>
-                    </div>
                 </div>
                 <button class="ask__send" type="submit" aria-label="Send message">Send</button>
             </form>

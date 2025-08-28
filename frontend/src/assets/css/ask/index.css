@@ -8,9 +8,10 @@
 .ask {
   display: grid;
   grid-template-columns: 320px 1fr;
-  height: 100vh;
+  height: 90vh;
   max-width: var(--container-xl);
   margin: 0 auto;
+  margin-top: 10vh;
   background: linear-gradient(
       180deg,
       var(--theme-bg) 0%,
@@ -106,7 +107,7 @@
 .ask__chat {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  height: 90vh;
 }
 
 .ask__chat-header {
@@ -211,15 +212,6 @@
   padding: 0.6rem 0.25rem;
   max-height: 180px;
 }
-
-.ask__input-tools { display: grid; grid-auto-flow: column; gap: 0.25rem; }
-.ask__tool {
-  padding: 0.5rem 0.6rem;
-  border-radius: 0.6rem;
-  background: var(--theme-bg-tertiary);
-  transition: var(--theme-transition-fast);
-}
-.ask__tool:hover { background: var(--theme-bg-secondary); }
 
 .ask__send {
   padding: 0.75rem 1.25rem;
