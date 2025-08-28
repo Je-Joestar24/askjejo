@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AskController;
 use App\Http\Controllers\api\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::put('/profile/update', [ProfileController::class, 'update']);
 });
+Route::get('/ask', [AskController::class, 'ask']);
