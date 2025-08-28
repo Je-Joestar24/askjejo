@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
     Route::put('/profile/update', [ProfileController::class, 'update']);
+    Route::post('/ask', [AskController::class, 'ask']);
 });
-Route::get('/ask', [AskController::class, 'ask']);
