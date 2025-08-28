@@ -132,6 +132,7 @@
   border-radius: 0.6rem;
   background: var(--theme-bg-tertiary);
   transition: var(--theme-transition-fast);
+  color: var(--theme-text);
 }
 .ask__chat-action:hover { background: var(--theme-bg-secondary); }
 .ask__chat-action.danger { color: var(--theme-error); }
