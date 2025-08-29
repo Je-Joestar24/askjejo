@@ -117,4 +117,47 @@ class ChatController extends Controller
         }
     }
 
+    /**
+     * Remove the specified chat and all its messages.
+     */
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'id' => ['required', 'integer', 'exists:chats,id'],
+            ]);
+
+            $userId = $request->user()->id;
+            
+            $chat = Chat::where('id', $id)
+                ->where('user_id', $userId)
+                ->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Chat not found or access denied.',
+                ], 404);
+            }
+
+            DB::transaction(function () use ($chat) {
+                // Delete all messages first (due to foreign key constraints)
+                Message::where('chat_id', $chat->id)->delete();
+                // Delete the chat
+                $chat->delete();
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Chat deleted successfully.',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to delete chat.',
+                'error' => app()->hasDebugModeEnabled() ? $e->getMessage() : null,
+            ], 500);
+        }
+    }
+
 }
