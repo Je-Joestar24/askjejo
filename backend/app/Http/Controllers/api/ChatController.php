@@ -76,4 +76,45 @@ class ChatController extends Controller
         }
     }
 
+    /**
+     * Update the specified chat title.
+     */
+    public function update(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'title' => ['required', 'string', 'max:255'],
+            ]);
+
+            $userId = $request->user()->id;
+            
+            $chat = Chat::where('id', $id)
+                ->where('user_id', $userId)
+                ->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Chat not found or access denied.',
+                ], 404);
+            }
+
+            $chat->update([
+                'title' => $validated['title'],
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Chat title updated successfully.',
+                'chat' => new ChatResource($chat),
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to update chat.',
+                'error' => app()->hasDebugModeEnabled() ? $e->getMessage() : null,
+            ], 500);
+        }
+    }
+
 }

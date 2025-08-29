@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     /* Chats */
     Route::get('/chat/history', [ChatController::class, 'index']);
     Route::post('/chat/show', [ChatController::class, 'show']);
+    Route::get('/chat/update', [ChatController::class, 'update']);
 });
