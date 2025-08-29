@@ -71,12 +71,12 @@
                 </div>
             </section>
 
-            <form class="ask__composer" role="form" aria-label="Message composer" autocomplete="off">
+            <form @submit.prevent="sendMessage" class="ask__composer" role="form" aria-label="Message composer" autocomplete="off">
                 <div class="ask__input-wrapper">
-                    <textarea class="ask__input" rows="1" placeholder="Type your message..."
+                    <textarea v-model="message" class="ask__input" rows="1" placeholder="Type your message..."
                         aria-label="Type your message"></textarea>
                 </div>
-                <button class="ask__send" type="submit" aria-label="Send message">Send</button>
+                <button class="ask__send"  :disabled="loading" type="submit" aria-label="Send message">Send</button>
             </form>
         </main>
     </section>
@@ -86,6 +86,7 @@
 
 import { ref, computed } from 'vue'
 import { marked } from 'marked'
+import api from '@/config/api'
 
 // This is your raw string from the backend
 const rawContent = ref(`
@@ -96,4 +97,40 @@ Fast language models have become increasingly important in recent years due to t
 const parsedContent = computed(() => {
     return marked.parse(rawContent.value.replace(/\\n/g, '\n').replace(/\\t/g, '    '))
 })
+
+
+const message = ref('')
+const chatId = ref(null) // store current chat id if continuing
+const loading = ref(false)
+const responseData = ref(null)
+
+async function sendMessage() {
+  loading.value = true
+  try {
+    const payload = {
+      message: message.value,
+      chat_id: chatId.value,   
+    }
+
+    const { data } = await api.post('/api/ask', payload, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`, // assuming you store auth token
+      },
+    })
+
+    responseData.value = data
+
+    // store chat_id if it’s a new chat
+    if (!chatId.value) {
+      chatId.value = data.chat_id
+    }
+
+    console.log('Messages:', data.messages)
+
+  } catch (error) {
+    console.error(error.response?.data || error.message)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
