@@ -1,0 +1,18 @@
+/* Loading Modal Styles */
+.loading {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+}
+
+.loading__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--theme-bg-overlay);
+    backdrop-filter: var(--theme-blur);
+    -webkit-backdrop-filter: var(--theme-blur);
+}
