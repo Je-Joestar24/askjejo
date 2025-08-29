@@ -1,0 +1,10 @@
+/* Exit state */
+.route-message--exit {
+    animation: routeMessageOut 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Active state with subtle pulse */
+.route-message:not(.route-message--exit) {
+    animation: routeMessageIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+        routeMessagePulse 3s ease-in-out infinite;
+}
