@@ -1,0 +1,25 @@
+.ask__messages {
+    overflow: auto;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    gap: 1rem;
+    background: linear-gradient(180deg,
+            var(--theme-bg-secondary) 0%,
+            var(--theme-bg) 60%);
+}
+
+.ask__message {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: start;
+    gap: 0.75rem;
+}
+
+.ask__message--assistant .ask__bubble {
+    background: var(--theme-bg-card);
+}
+
+.ask__message--user .ask__bubble {
+    background: var(--theme-bg);
+    border: 1px solid var(--theme-border);
+}

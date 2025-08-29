@@ -1,0 +1,16 @@
+/* Responsive */
+@media (max-width: 1024px) {
+    .ask {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .ask {
+        grid-template-columns: 1fr;
+    }
+
+    .ask__sidebar {
+        display: none;
+    }
+}

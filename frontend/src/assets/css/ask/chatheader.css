@@ -1,0 +1,28 @@
+/* Chat Column */
+.ask__chat {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 90vh;
+}
+
+.ask__chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--theme-border);
+    background: var(--theme-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.ask__chat-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.ask__chat-subtitle {
+    color: var(--theme-text-muted);
+}

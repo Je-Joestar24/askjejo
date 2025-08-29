@@ -1,0 +1,17 @@
+.ask__sidebar-footer {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5rem;
+}
+
+.ask__sidebar-btn {
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.6rem;
+    background: var(--theme-bg-tertiary);
+    color: var(--theme-text);
+    transition: var(--theme-transition-fast);
+}
+
+.ask__sidebar-btn:hover {
+    background: var(--theme-bg-secondary);
+}

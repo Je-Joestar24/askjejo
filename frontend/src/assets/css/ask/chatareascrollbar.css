@@ -1,0 +1,24 @@
+/* Scoped Custom Scrollbar for Ask */
+.ask__conversations::-webkit-scrollbar,
+.ask__messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ask__conversations::-webkit-scrollbar-track,
+.ask__messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ask__conversations::-webkit-scrollbar-thumb,
+.ask__messages::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--theme-primary), var(--theme-secondary));
+  border-radius: 999px;
+}
+
+.ask__conversations {
+  scrollbar-width: thin;
+}
+
+.ask__messages {
+  scrollbar-width: thin;
+}

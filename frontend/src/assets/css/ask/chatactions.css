@@ -1,0 +1,21 @@
+.ask__chat-actions {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5rem;
+}
+
+.ask__chat-action {
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.6rem;
+    background: var(--theme-bg-tertiary);
+    transition: var(--theme-transition-fast);
+    color: var(--theme-text);
+}
+
+.ask__chat-action:hover {
+    background: var(--theme-bg-secondary);
+}
+
+.ask__chat-action.danger {
+    color: var(--theme-error);
+}
