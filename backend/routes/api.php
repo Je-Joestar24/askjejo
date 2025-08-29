@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/ask', [AskController::class, 'ask']);
     /* Chats */
     Route::get('/chat/history', [ChatController::class, 'index']);
+    Route::post('/chat/show', [ChatController::class, 'show']);
 });

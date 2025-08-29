@@ -38,4 +38,42 @@ class ChatController extends Controller
         }
     }
 
+    /**
+     * Display the specified chat with its message history.
+     */
+    public function show(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'id' => ['required', 'integer', 'exists:chats,id'],
+            ]);
+
+            $userId = $request->user()->id;
+            
+            $chat = Chat::where('id', $id)
+                ->where('user_id', $userId)
+                ->with('messages')
+                ->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Chat not found or access denied.',
+                ], 404);
+            }
+
+            return response()->json([
+                'success' => true,
+                'chat' => new ChatResource($chat),
+                'messages' => MessageResource::collection($chat->messages),
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to fetch chat.',
+                'error' => app()->hasDebugModeEnabled() ? $e->getMessage() : null,
+            ], 500);
+        }
+    }
+
 }
