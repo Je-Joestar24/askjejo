@@ -160,4 +160,55 @@ class ChatController extends Controller
         }
     }
 
+    /**
+     * Get chat history for a specific chat.
+     */
+    public function history(Request $request, $id)
+    {
+        try {
+            $validated = $request->validate([
+                'id' => ['required', 'integer', 'exists:chats,id'],
+                'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
+                'offset' => ['nullable', 'integer', 'min:0'],
+            ]);
+
+            $userId = $request->user()->id;
+            $limit = $validated['limit'] ?? 50;
+            $offset = $validated['offset'] ?? 0;
+            
+            $chat = Chat::where('id', $id)
+                ->where('user_id', $userId)
+                ->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Chat not found or access denied.',
+                ], 404);
+            }
+
+            $messages = Message::where('chat_id', $id)
+                ->orderBy('created_at', 'asc')
+                ->skip($offset)
+                ->take($limit)
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'chat_id' => $id,
+                'messages' => MessageResource::collection($messages),
+                'pagination' => [
+                    'limit' => $limit,
+                    'offset' => $offset,
+                    'total' => Message::where('chat_id', $id)->count(),
+                ],
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to fetch chat history.',
+                'error' => app()->hasDebugModeEnabled() ? $e->getMessage() : null,
+            ], 500);
+        }
+    }
 }
