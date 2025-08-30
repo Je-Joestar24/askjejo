@@ -331,6 +331,32 @@ const store = createStore({
       }
     },
 
+    async getChatMessages({ commit, state }, chatId) {
+      try {
+        if (!chatId) return;
+
+        state.ask.loading = true;
+        const response = await api.post('api/chat/mesages/all', { id: chatId });
+
+        if (response.data.success) {
+          commit('setMessages', response.data.messages || []);
+          commit('setActiveChat', {
+            id: response.data.chat.id,
+            title: response.data.chat.title
+          });
+        } else {
+          console.error('Failed to fetch chat messages:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching chat messages:', error);
+        commit('setMessage', {
+          message: 'Failed to load chat messages',
+          type: 'error'
+        });
+      } finally {
+        state.ask.loading = false;
+      }
+    },
   }
 })
 

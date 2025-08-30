@@ -41,7 +41,7 @@ class ChatController extends Controller
     /**
      * Display the specified chat with its message history.
      */
-    public function show(Request $request, $id)
+    public function show(Request $request)
     {
         try {
             $validated = $request->validate([
@@ -50,7 +50,7 @@ class ChatController extends Controller
 
             $userId = $request->user()->id;
             
-            $chat = Chat::where('id', $id)
+            $chat = Chat::where('id', $request->input('id'))
                 ->where('user_id', $userId)
                 ->with('messages')
                 ->first();
