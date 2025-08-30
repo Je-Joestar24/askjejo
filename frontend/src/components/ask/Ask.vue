@@ -1,92 +1,17 @@
 <template>
     <section class="ask" role="main" aria-label="Ask main chat page">
-        <aside class="ask__sidebar" role="navigation" aria-label="Chat sessions list">
-            <header class="ask__sidebar-header">
-                <h2 class="ask__sidebar-title" aria-label="Chats">Chats</h2>
-                <button class="ask__new-chat" aria-label="Start new chat">+ New</button>
-            </header>
-
-            <div class="ask__sidebar-search" role="search" aria-label="Search chats">
-                <input class="ask__search-input" type="text" placeholder="Search conversations"
-                    aria-label="Search conversations" />
-            </div>
-
-            <nav class="ask__conversations" aria-label="Conversation list">
-                <ul class="ask__conversation-list" role="list">
-                    <li class="ask__conversation-item active" role="listitem" tabindex="0"
-                        aria-label="Conversation: Fast Language Models">
-                        <span class="ask__conversation-title">Fast Language Models</span>
-                        <span class="ask__conversation-meta">Today • 3 messages</span>
-                    </li>
-                    <li class="ask__conversation-item" role="listitem" tabindex="0"
-                        aria-label="Conversation: API design help">
-                        <span class="ask__conversation-title">API design help</span>
-                        <span class="ask__conversation-meta">Yesterday • 12 messages</span>
-                    </li>
-                    <li class="ask__conversation-item" role="listitem" tabindex="0"
-                        aria-label="Conversation: Vue patterns">
-                        <span class="ask__conversation-title">Vue patterns</span>
-                        <span class="ask__conversation-meta">2 days ago • 7 messages</span>
-                    </li>
-                    <li class="ask__conversation-item" role="listitem" tabindex="0"
-                        aria-label="Conversation: Laravel Sanctum">
-                        <span class="ask__conversation-title">Laravel Sanctum</span>
-                        <span class="ask__conversation-meta">Aug 12 • 21 messages</span>
-                    </li>
-                </ul>
-            </nav>
-
-            <footer class="ask__sidebar-footer" aria-label="Sidebar actions">
-                <button class="ask__sidebar-btn" aria-label="Settings">Profile</button>
-                <button class="ask__sidebar-btn" aria-label="Logout">Logout</button>
-            </footer>
-        </aside>
-
-        <main class="ask__chat" aria-label="Chat area">
-            <header class="ask__chat-header" aria-label="Chat header">
-                <div class="ask__chat-title-group">
-                    <h1 class="ask__chat-title" aria-label="Current conversation title">Fast Language Models</h1>
-                </div>
-                <div class="ask__chat-actions">
-                    <button class="ask__chat-action" aria-label="Rename chat">Rename</button>
-                    <button class="ask__chat-action danger" aria-label="Delete chat">Delete</button>
-                </div>
-            </header>
-
-            <section class="ask__messages" aria-label="Message history" role="log">
-                <div class="ask__message ask__message--user" aria-label="User message">
-                    <div class="ask__avatar" aria-hidden="true">U</div>
-                    <div class="ask__bubble">
-                        <p class="ask__text">Explain the importance of fast language models.</p>
-                        <span class="ask__meta" aria-label="Sent time">09:21 AM</span>
-                    </div>
-                </div>
-
-                <div class="ask__message ask__message--assistant" aria-label="Assistant message">
-                    <div class="ask__avatar" aria-hidden="true">AI</div>
-                    <div class="ask__bubble">
-                        <div class="ask__text" v-html="parsedContent"></div>
-                        <span class="ask__meta" aria-label="Sent time">09:22 AM</span>
-                    </div>
-                </div>
-            </section>
-
-            <form @submit.prevent="sendMessage" class="ask__composer" role="form" aria-label="Message composer" autocomplete="off">
-                <div class="ask__input-wrapper">
-                    <textarea v-model="message" class="ask__input" rows="1" placeholder="Type your message..."
-                        aria-label="Type your message"></textarea>
-                </div>
-                <button class="ask__send"  :disabled="loading" type="submit" aria-label="Send message">Send</button>
-            </form>
-        </main>
+        <Sidebar/>
+        <AskArea/>
     </section>
 </template>
 
 <script setup>
 
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { marked } from 'marked'
 import api from '@/config/api'
+import Sidebar from './Sidebar.vue'
+import AskArea from './AskArea.vue'
 
 // This is your raw string from the backend
 const rawContent = ref(`
@@ -105,32 +30,44 @@ const loading = ref(false)
 const responseData = ref(null)
 
 async function sendMessage() {
-  loading.value = true
-  try {
-    const payload = {
-      message: message.value,
-      chat_id: chatId.value,   
-    }
+    loading.value = true
+    try {
+        const payload = {
+            message: message.value,
+            chat_id: chatId.value,
+        }
 
-    const { data } = await api.post('/api/ask', payload, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`, // assuming you store auth token
-      },
+        const { data } = await api.post('/api/ask', payload, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`, // assuming you store auth token
+            },
+        })
+
+        responseData.value = data
+
+        // store chat_id if it’s a new chat
+        if (!chatId.value) {
+            chatId.value = data.chat_id
+        }
+
+        console.log('Messages:', data.messages)
+
+    } catch (error) {
+        console.error(error.response?.data || error.message)
+    } finally {
+        loading.value = false
+    }
+}
+
+const loadChats = async () => {
+    const { data } = await api.get('/api/chat/history', {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // assuming you store auth token
+        },
     })
 
-    responseData.value = data
-
-    // store chat_id if it’s a new chat
-    if (!chatId.value) {
-      chatId.value = data.chat_id
-    }
-
-    console.log('Messages:', data.messages)
-
-  } catch (error) {
-    console.error(error.response?.data || error.message)
-  } finally {
-    loading.value = false
-  }
+    console.log(data)
 }
+
+onMounted(loadChats)
 </script>

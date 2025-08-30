@@ -28,7 +28,8 @@ const store = createStore({
       },
       ask: {
         chats: [],
-        activeChat: { id: '', title: '' },
+        search: '',
+        activeChat: { id: null, title: '' },
         messages: [{ sender: '', message: '', datetime: '' }],
         message: '',
         loading: false,
