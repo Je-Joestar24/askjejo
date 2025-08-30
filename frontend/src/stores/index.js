@@ -27,10 +27,10 @@ const store = createStore({
         token: ''
       },
       ask: {
-        chats: [ {id: 1, title: 'Test'}],
+        chats: [],
         search: '',
         activeChat: { id: null, title: '' },
-        messages: [{ sender: 'bot', message: '', datetime: '' },{ sender: 'user', message: '', datetime: '' }],
+        messages: [],
         message: '',
         loading: false,
         response: null,
@@ -123,6 +123,36 @@ const store = createStore({
     setRouteMessage(state, message) {
       if (!message) state.routeMessage = ''
       state.routeMessage = message
+    },
+    setChats(state, chats) {
+      state.ask.chats = chats;
+    },
+    setActiveChat(state, chat) {
+      state.ask.activeChat = chat;
+    },
+    setMessages(state, messages) {
+      state.ask.messages = messages;
+    },
+    addMessage(state, message) {
+      state.ask.messages.push(message);
+    },
+    updateChatTitle(state, { chatId, title }) {
+      const chatIndex = state.ask.chats.findIndex(chat => chat.id === chatId);
+      if (chatIndex !== -1) {
+        state.ask.chats[chatIndex].title = title;
+      }
+    },
+    removeChat(state, chatId) {
+      state.ask.chats = state.ask.chats.filter(chat => chat.id !== chatId);
+    },
+    resetActiveChat(state) {
+      state.ask.activeChat = { id: null, title: '' };
+    },
+    clearMessages(state) {
+      state.ask.messages = [];
+    },
+    addNewChat(state, chat) {
+      state.ask.chats.push(chat);
     }
   },
   actions: {
@@ -274,7 +304,33 @@ const store = createStore({
       } finally {
         state.loading = false
       }
-    }
+    },
+    // Ask actions
+    async getChatHistory({ commit, state }) {
+      try {
+        state.ask.loading = true;
+        const response = await api.get('/api/chat/history', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // assuming you store auth token
+          },
+        });
+
+        if (response.data.success) {
+          commit('setChats', response.data.data || []);
+        } else {
+          console.error('Failed to fetch chat history:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching chat history:', error);
+        commit('setMessage', {
+          message: 'Failed to load chat history',
+          type: 'error'
+        });
+      } finally {
+        state.ask.loading = false;
+      }
+    },
+
   }
 })
 

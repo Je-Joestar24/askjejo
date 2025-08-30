@@ -28,7 +28,7 @@ class ChatController extends Controller
                 ->latest()
                 ->get();
 
-            return ChatResource::collection($chats);
+            return ChatResource::collection($chats)->additional(['success' => true]);
         } catch (\Throwable $e) {
             return response()->json([
                 'success' => false,
