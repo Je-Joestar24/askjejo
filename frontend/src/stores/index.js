@@ -27,7 +27,7 @@ const store = createStore({
         token: ''
       },
       ask: {
-        chats: [],
+        chats: [ {id: 1, title: 'Test'}],
         search: '',
         activeChat: { id: null, title: '' },
         messages: [{ sender: '', message: '', datetime: '' }],
