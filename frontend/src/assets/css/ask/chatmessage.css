@@ -15,6 +15,10 @@
     gap: 0.75rem;
 }
 
+.ask__message.ask__message--user{
+    grid-template-columns: 1fr 40px;
+}
+
 .ask__message--assistant .ask__bubble {
     background: var(--theme-bg-card);
 }
