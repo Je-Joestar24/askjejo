@@ -30,7 +30,7 @@ const store = createStore({
         chats: [ {id: 1, title: 'Test'}],
         search: '',
         activeChat: { id: null, title: '' },
-        messages: [{ sender: '', message: '', datetime: '' }],
+        messages: [{ sender: 'bot', message: '', datetime: '' },{ sender: 'user', message: '', datetime: '' }],
         message: '',
         loading: false,
         response: '',
