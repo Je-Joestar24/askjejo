@@ -33,7 +33,7 @@ const store = createStore({
         messages: [{ sender: 'bot', message: '', datetime: '' },{ sender: 'user', message: '', datetime: '' }],
         message: '',
         loading: false,
-        response: '',
+        response: null,
       },
       api: api,
       loading: false,
