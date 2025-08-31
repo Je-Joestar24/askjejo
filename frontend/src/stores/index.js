@@ -405,6 +405,85 @@ const store = createStore({
       }
     },
 
+    async sendMessage({ commit, state }, message) {
+      try {
+        state.ask.loading = true;
+
+        // Add user message to state immediately
+        const userMessage = {
+          id: Date.now(), // Temporary ID
+          chat_id: state.ask.activeChat.id,
+          user_id: state.user.logged_user?.id,
+          sender: 'user',
+          content: message,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        commit('addMessage', userMessage);
+
+        // Prepare request payload
+        const payload = {
+          message: message,
+          chat_id: state.ask.activeChat.id || null,
+          title: state.ask.activeChat.title || null
+        };
+
+        const response = await api.post('api/ask', payload);
+
+        if (response.data.success) {
+          // Update active chat if new chat was created
+          if (response.data.chat_id && !state.ask.activeChat.id) {
+            commit('setActiveChat', {
+              id: response.data.chat_id,
+              title: response.data.messages.user.content.substring(0, 60) + '...'
+            });
+          }
+
+          // Add bot response to state
+          const botMessage = {
+            id: response.data.messages.bot.id,
+            chat_id: response.data.chat_id || state.ask.activeChat.id,
+            user_id: null,
+            sender: 'bot',
+            content: response.data.messages.bot.content,
+            created_at: response.data.messages.bot.created_at,
+            updated_at: response.data.messages.bot.created_at
+          };
+
+          commit('addMessage', botMessage);
+
+          // Update chat list if this is a new chat
+          if (response.data.chat_id && !state.ask.activeChat.id) {
+            commit('addNewChat', {
+              id: response.data.chat_id,
+              title: response.data.messages.user.content.substring(0, 60) + '...',
+              user_id: state.user.logged_user?.id,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            });
+          }
+
+          commit('setMessage', {
+            message: 'Message sent successfully',
+            type: 'success'
+          });
+        } else {
+          commit('setMessage', {
+            message: response.data.message || 'Failed to send message',
+            type: 'error'
+          });
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+        commit('setMessage', {
+          message: 'Failed to send message',
+          type: 'error'
+        });
+      } finally {
+        state.ask.loading = false;
+      }
+    }
   }
 })
 
