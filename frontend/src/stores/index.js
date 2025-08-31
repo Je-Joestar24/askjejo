@@ -386,6 +386,25 @@ const store = createStore({
         state.loading = false;
       }
     },
+
+    async resetChats({ commit }) {
+      try {
+        commit('clearChats');
+        commit('resetActiveChat');
+        commit('clearMessages');
+        commit('setMessage', {
+          message: 'Chats reset successfully',
+          type: 'success'
+        });
+      } catch (error) {
+        console.error('Error resetting chats:', error);
+        commit('setMessage', {
+          message: 'Failed to reset chats',
+          type: 'error'
+        });
+      }
+    },
+
   }
 })
 
