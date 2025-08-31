@@ -26,6 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/chat/history', [ChatController::class, 'index']);
     Route::post('/chat/mesages/all', [ChatController::class, 'show']);
     Route::post('/chat/update/{id}', [ChatController::class, 'update']);
-    Route::delete('/chat/delete', [ChatController::class, 'destroy']);
+    Route::delete('/chat/delete/{id}', [ChatController::class, 'destroy']);
     Route::post('/chat/mesages/paginated', [ChatController::class, 'history']);
 });

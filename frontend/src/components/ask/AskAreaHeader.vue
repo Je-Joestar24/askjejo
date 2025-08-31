@@ -109,7 +109,7 @@ const deleteChat = async () => {
     if (!activeChat.value.id) return;
     
     if (confirm('Are you sure you want to delete this chat? This action cannot be undone.')) {
-        await store.dispatch('deleteChat', activeChat.value.id);
+        await store.dispatch('deleteChat');
     }
 };
 

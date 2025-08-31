@@ -485,14 +485,14 @@ const store = createStore({
       }
     },
 
-    async deleteChat({ commit, state }, chatId) {
+    async deleteChat({ commit, state }) {
       try {
         state.loading = true;
-        const response = await api.delete('api/chat/delete', { data: { id: chatId } });
+        const response = await api.delete(`api/chat/delete/${state.ask.activeChat.id}`, { data: { id: state.ask.activeChat.id } });
 
         if (response.data.success) {
-          commit('removeChat', chatId);
-          if (state.activeChat.id === chatId) {
+          commit('removeChat', state.ask.activeChat.id);
+          if (state.ask.activeChat.id === state.ask.activeChat.id) {
             commit('resetActiveChat');
             commit('clearMessages');
           }
