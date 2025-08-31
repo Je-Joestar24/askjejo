@@ -56,6 +56,16 @@ const store = createStore({
     },
     hasChanges(state, getters) {
       return getters.hasProfileChanges || getters.hasPasswordChanges
+    },
+    filteredChats(state) {
+      if (!state.ask.search.trim()) {
+        return state.ask.chats;
+      }
+      
+      const searchTerm = state.ask.search.toLowerCase().trim();
+      return state.ask.chats.filter(chat => 
+        chat.title && chat.title.toLowerCase().includes(searchTerm)
+      );
     }
   },
   mutations: {
