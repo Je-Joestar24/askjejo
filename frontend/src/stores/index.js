@@ -393,10 +393,6 @@ const store = createStore({
       try {
         commit('resetActiveChat');
         commit('clearMessages');
-        commit('setMessage', {
-          message: 'Chats reset successfully',
-          type: 'success'
-        });
       } catch (error) {
         console.error('Error resetting chats:', error);
         commit('setMessage', {

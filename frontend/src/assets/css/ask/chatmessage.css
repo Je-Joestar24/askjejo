@@ -6,6 +6,7 @@
     background: linear-gradient(180deg,
             var(--theme-bg-secondary) 0%,
             var(--theme-bg) 60%);
+    min-height: 100%;
 }
 
 .ask__message {
