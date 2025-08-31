@@ -152,7 +152,9 @@ const store = createStore({
       state.ask.messages = [];
     },
     addNewChat(state, chat) {
-      state.ask.chats.push(chat);
+      state.ask.chats.reverse()
+      state.ask.chats.push(chat)
+      state.ask.chats.reverse()
     }
   },
   actions: {
@@ -389,7 +391,6 @@ const store = createStore({
 
     async resetChats({ commit }) {
       try {
-        commit('clearChats');
         commit('resetActiveChat');
         commit('clearMessages');
         commit('setMessage', {
@@ -405,7 +406,7 @@ const store = createStore({
       }
     },
 
-    async sendMessage({ commit, state }, message) {
+    async sendMessage({ commit, state }) {
       try {
         state.ask.loading = true;
 
@@ -415,7 +416,7 @@ const store = createStore({
           chat_id: state.ask.activeChat.id,
           user_id: state.user.logged_user?.id,
           sender: 'user',
-          content: message,
+          content: state.ask.message,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
@@ -424,7 +425,7 @@ const store = createStore({
 
         // Prepare request payload
         const payload = {
-          message: message,
+          message: state.ask.message,
           chat_id: state.ask.activeChat.id || null,
           title: state.ask.activeChat.title || null
         };
@@ -432,13 +433,6 @@ const store = createStore({
         const response = await api.post('api/ask', payload);
 
         if (response.data.success) {
-          // Update active chat if new chat was created
-          if (response.data.chat_id && !state.ask.activeChat.id) {
-            commit('setActiveChat', {
-              id: response.data.chat_id,
-              title: response.data.messages.user.content.substring(0, 60) + '...'
-            });
-          }
 
           // Add bot response to state
           const botMessage = {
@@ -454,14 +448,20 @@ const store = createStore({
           commit('addMessage', botMessage);
 
           // Update chat list if this is a new chat
-          if (response.data.chat_id && !state.ask.activeChat.id) {
+          if (!(state.ask.activeChat.id && state.ask.activeChat.title)) {
             commit('addNewChat', {
               id: response.data.chat_id,
-              title: response.data.messages.user.content.substring(0, 60) + '...',
+              title: state.ask.message.substring(0, 60) + '...',
               user_id: state.user.logged_user?.id,
               created_at: new Date().toISOString(),
               updated_at: new Date().toISOString()
             });
+            commit('setActiveChat', {
+              id: response.data.chat_id,
+              title: state.ask.message.substring(0, 60) + '...',
+            });
+
+            state.ask.message = ''
           }
 
           commit('setMessage', {
