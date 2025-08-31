@@ -357,6 +357,35 @@ const store = createStore({
         state.ask.loading = false;
       }
     },
+
+    async updateChatTitle({ commit, state }, { chatId, title }) {
+      try {
+        state.loading = true;
+        const response = await api.post(`api/chat/update/${chatId}`, { id: chatId, title });
+
+        if (response.data.success) {
+          commit('updateChatTitle', { chatId, title });
+          state.ask.activeChat.title = title;
+          commit('setMessage', {
+            message: 'Chat title updated successfully',
+            type: 'success'
+          });
+        } else {
+          commit('setMessage', {
+            message: response.data.message || 'Failed to update chat title',
+            type: 'error'
+          });
+        }
+      } catch (error) {
+        console.error('Error updating chat title:', error);
+        commit('setMessage', {
+          message: 'Failed to update chat title',
+          type: 'error'
+        });
+      } finally {
+        state.loading = false;
+      }
+    },
   }
 })
 

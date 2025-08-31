@@ -1,4 +1,9 @@
 /* Chat Column */
+
+.ask__chat-title-group{
+    width: 100%;
+}
+
 .ask__chat {
     display: grid;
     grid-template-rows: auto 1fr auto;
