@@ -1,7 +1,7 @@
 <template>
     <nav class="ask__conversations" aria-label="Conversation list">
         <ul class="ask__conversation-list" role="list">
-            <li v-if="state.chats.length > 0" v-for="(chat, _) in state.chats" :key="_"
+            <li v-if="state.chats.length > 0" v-for="(chat, _) in store.getters.filteredChats" :key="_"
                 @click.prevent="handleClickConversation(chat.id)"
                 class="ask__conversation-item" :class="chat?.id == state.activeChat.id ? 'active' : ''"
                 role="listitem" tabindex="0" aria-label="Conversation: Fast Language Models">
