@@ -483,7 +483,39 @@ const store = createStore({
       } finally {
         state.ask.loading = false;
       }
-    }
+    },
+
+    async deleteChat({ commit, state }, chatId) {
+      try {
+        state.loading = true;
+        const response = await api.delete('api/chat/delete', { data: { id: chatId } });
+
+        if (response.data.success) {
+          commit('removeChat', chatId);
+          if (state.activeChat.id === chatId) {
+            commit('resetActiveChat');
+            commit('clearMessages');
+          }
+          commit('setMessage', {
+            message: 'Chat deleted successfully',
+            type: 'success'
+          });
+        } else {
+          commit('setMessage', {
+            message: response.data.message || 'Failed to delete chat',
+            type: 'error'
+          });
+        }
+      } catch (error) {
+        console.error('Error deleting chat:', error);
+        commit('setMessage', {
+          message: 'Failed to delete chat',
+          type: 'error'
+        });
+      } finally {
+        state.loading = false;
+      }
+    },
   }
 })
 
