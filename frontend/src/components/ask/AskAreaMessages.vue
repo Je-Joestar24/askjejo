@@ -13,7 +13,13 @@
 
         <!-- New Chat Welcome Display -->
         <div v-else class="ask__new-chat-welcome">
-            <AskAreaNewChat/>
+            <AskAreaNewChat />
+        </div>
+        <div v-if="state.loading" class="ask__message ask__message--assistant" aria-label="Bot message">
+            <div class="ask__avatar" aria-hidden="true">A</div>
+            <div class="ask__bubble">
+                <p class="ask__text">Please wait generating response...</p>
+            </div>
         </div>
     </section>
 </template>
