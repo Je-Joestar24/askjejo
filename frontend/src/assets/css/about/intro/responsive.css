@@ -33,6 +33,10 @@
 }
 
 @media (max-width: 480px) {
+    div.intro__container{
+        grid-template-columns: 1fr;
+    }
+
     .intro {
         padding: 3rem 0;
     }

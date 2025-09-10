@@ -46,15 +46,15 @@
         grid-template-columns: 1fr;
     }
 
-    div.hero__tagline {
+    .hero__tagline {
         font-size: 1.125rem;
     }
 
-    div.hero__description {
+    .hero__description {
         padding: 1rem;
     }
 
-    div.hero__tagline {
+    .hero__tagline {
         font-size: 1.125rem;
     }
 }
