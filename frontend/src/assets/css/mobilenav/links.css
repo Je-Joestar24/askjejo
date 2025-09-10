@@ -4,6 +4,8 @@
     border-radius: 0.75rem;
     background: transparent;
     color: var(--theme-text);
+    width: 100%;
+    text-align: start;
 }
 
 .mobile-nav__link:hover,

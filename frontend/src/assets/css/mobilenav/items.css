@@ -12,6 +12,7 @@
     opacity: 1;
     transform: translateX(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 100%;
 }
 
 /* Items animate IN */
