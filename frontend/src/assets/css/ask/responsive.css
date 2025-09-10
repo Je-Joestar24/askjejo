@@ -12,11 +12,21 @@
 
     .ask__sidebar {
         display: none;
+        max-height: 60vh;
     }
-}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+    .ask__chat-header {
+        padding: 0.5rem 1rem;
+        position: relative;
+    }
+
+    .ask__chat-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
     .ask__new-chat-welcome {
         min-height: calc(100vh - 200px);
         padding: 1rem;
@@ -37,5 +47,9 @@
 
     .ask__feature-item {
         padding: 0.5rem 0.75rem;
+    }
+
+    div.app__arrow-toggle {
+        display: block;
     }
 }

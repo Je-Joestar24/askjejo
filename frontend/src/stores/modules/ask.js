@@ -8,6 +8,7 @@ export default {
         message: '',
         loading: false,
         response: null,
+        arrow: false,
     }),
     getters: {
         filteredChats(state) {
@@ -44,6 +45,9 @@ export default {
         },
         addNewChat(state, chat) {
             state.chats.unshift(chat) // simpler than reverse()
+        },
+        toggleArrow(state) {
+            state.arrow = !state.arrow
         }
     }
 }
