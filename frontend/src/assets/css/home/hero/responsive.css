@@ -42,15 +42,19 @@
 
 @media (max-width: 480px) {
 
-    .hero__tagline {
+    div.hero__container {
+        grid-template-columns: 1fr;
+    }
+
+    div.hero__tagline {
         font-size: 1.125rem;
     }
 
-    .hero__description {
+    div.hero__description {
         padding: 1rem;
     }
 
-    .hero__tagline {
+    div.hero__tagline {
         font-size: 1.125rem;
     }
 }
