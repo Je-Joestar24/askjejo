@@ -8,7 +8,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  store.commit('setRouteMessage',`${to.name} PAGE`.toUpperCase()) 
+  store.commit('setRouteMessage', `${to.name} PAGE`.toUpperCase())
+  document.title = `AskJejo | ${to.name.charAt(0).toUpperCase() + to.name.slice(1)}`
 
   // Check localStorage for authentication
   const token = localStorage.getItem('token')
