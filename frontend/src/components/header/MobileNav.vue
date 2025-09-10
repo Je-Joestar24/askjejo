@@ -8,7 +8,7 @@
     </button>
 
     <!-- Mobile navigation drawer -->
-    <MobileNavItems id="mobile-menu" v-model:openNav="openNav" @open-modal="toggleModal" />
+    <MobileNavItems v-model:openNav="openNav" @open-modal="toggleModal" />
 </template>
 
 <script setup>

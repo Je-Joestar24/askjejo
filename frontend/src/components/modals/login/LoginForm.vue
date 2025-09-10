@@ -13,12 +13,12 @@
     <form class="loginmodal__form" autocomplete="off" @submit.prevent="loginNow">
         <div class="loginmodal__field">
             <label for="login-email" class="loginmodal__label">Email</label>
-            <input id="login-email" type="email" v-model="login_form.email" class="loginmodal__input"
+            <input type="email" v-model="login_form.email" class="loginmodal__input"
                 placeholder="Enter your email" required autocomplete="username" />
         </div>
         <div class="loginmodal__field">
             <label for="login-password" class="loginmodal__label">Password</label>
-            <input id="login-password" type="password" v-model="login_form.password" class="loginmodal__input"
+            <input type="password" v-model="login_form.password" class="loginmodal__input"
                 placeholder="Enter your password" required autocomplete="current-password" />
         </div>
         <button type="submit" class="loginmodal__button" aria-label="Login">Login</button>

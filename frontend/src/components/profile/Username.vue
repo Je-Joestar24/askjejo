@@ -3,7 +3,7 @@
         <label for="username" class="form-label">Username</label>
         <input v-model="state.profileData.name" type="text" class="form-input" :disabled="!state.isEditing"
             :class="{ 'editing': state.isEditing }" aria-describedby="username-help" />
-        <div id="username-help" class="form-help">Your display name</div>
+        <div class="form-help">Your display name</div>
     </div>
 </template>
 <script setup>
