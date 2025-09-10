@@ -1,0 +1,11 @@
+.mobile-nav__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    color: var(--theme-text);
+}

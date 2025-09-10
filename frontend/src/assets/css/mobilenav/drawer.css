@@ -1,0 +1,43 @@
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 360px;
+    background: var(--theme-bg);
+    box-shadow: var(--theme-shadow);
+    z-index: 95;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+/* Slide in/out */
+.mobile-nav-drawer-enter-from {
+    transform: translateX(100%);
+}
+
+.mobile-nav-drawer-enter-to {
+    transform: translateX(0);
+}
+
+.mobile-nav-drawer-leave-from {
+    transform: translateX(0);
+}
+
+.mobile-nav-drawer-leave-to {
+    transform: translateX(100%);
+}
+
+.mobile-nav-backdrop-enter-active,
+.mobile-nav-backdrop-leave-active {
+    transition: opacity 0.25s ease;
+}
+
+.mobile-nav-drawer-enter-active,
+.mobile-nav-drawer-leave-active {
+    transition: transform 0.3s ease;
+}

@@ -8,14 +8,6 @@
             Sign Up
         </button>
     </div>
-
-    <!-- Mobile menu toggle (hidden on desktop) -->
-    <button class="header__mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false"
-        aria-controls="mobile-menu">
-        <span class="header__mobile-toggle-line"></span>
-        <span class="header__mobile-toggle-line"></span>
-        <span class="header__mobile-toggle-line"></span>
-    </button>
 </template>
 
 
