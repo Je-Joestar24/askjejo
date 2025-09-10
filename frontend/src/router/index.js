@@ -4,7 +4,14 @@ import store from '@/stores/index'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: routes
+  routes: routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // restore scroll when using back/forward
+      return savedPosition
+    }
+    return { left: 0, top: 0, behavior: 'smooth' } // smooth scroll to top
+  }
 })
 
 router.beforeEach((to, from, next) => {
