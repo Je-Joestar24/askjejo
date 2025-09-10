@@ -13,7 +13,7 @@ Route::post('/auth/login', [LoginController::class, 'login']);
 // Protected routes (require auth)
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/logout', [LoginController::class, 'logout']);
+    Route::post('/auth/logout', [LoginController::class, 'logout']);
     // Test routes to verify CORS and CSRF
     Route::get('/authorized', function () {
         return response()->json([

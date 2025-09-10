@@ -61,9 +61,9 @@ const store = createStore({
       if (!state.ask.search.trim()) {
         return state.ask.chats;
       }
-      
+
       const searchTerm = state.ask.search.toLowerCase().trim();
-      return state.ask.chats.filter(chat => 
+      return state.ask.chats.filter(chat =>
         chat.title && chat.title.toLowerCase().includes(searchTerm)
       );
     }
@@ -222,9 +222,11 @@ const store = createStore({
       state.loading = true;
 
       try {
-        delete state.api.defaults.headers.common['Authorization']
-        commit('userCleanup')
-        return { success: true, message: 'Logged out successfully' }
+        await state.api.post('/api/auth/logout', {}, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
       } catch (error) {
         console.error('Logout failed:', error)
         delete state.api.defaults.headers.common['Authorization']
@@ -235,7 +237,10 @@ const store = createStore({
           message: `Logout failed ${error?.response?.data?.message || 'Unknown error'}`
         }
       } finally {
+        delete state.api.defaults.headers.common['Authorization']
+        commit('userCleanup')
         state.loading = false
+        return { success: true, message: 'Logout success' }
       }
     },
     togglePasswordChange({ commit, state }) {

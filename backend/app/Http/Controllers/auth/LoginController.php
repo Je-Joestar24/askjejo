@@ -50,6 +50,9 @@ class LoginController extends Controller
         // Revoke only the current token
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Logged out']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged out'
+        ]);
     }
 }
