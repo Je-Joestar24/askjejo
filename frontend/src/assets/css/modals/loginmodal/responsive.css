@@ -1,8 +1,8 @@
 @media (max-width: 600px) {
-    .loginmodal__modal {
+    div.loginmodal__modal {
         min-width: 0;
         width: 98vw;
-        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        padding: 1.2rem 1.5rem 1rem 1.5rem;
         border-radius: 1rem;
     }
 

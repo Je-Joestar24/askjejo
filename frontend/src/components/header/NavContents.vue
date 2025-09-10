@@ -6,7 +6,7 @@
             <NavItems />
             <Buttons v-if="!state.user.logged_user" />
             <Profile v-else />
-            <MobileNav />
+            <MobileNav v-if="!state.user.logged_user" />
         </div>
     </nav>
 </template>
