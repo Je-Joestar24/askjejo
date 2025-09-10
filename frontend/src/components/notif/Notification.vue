@@ -61,13 +61,13 @@ const startAutoClear = () => {
   if (clearTimer) clearTimeout(clearTimer)
   clearTimer = setTimeout(() => {
     // Clear store after 500ms as requested
-    store.commit('setMessage')
+    store.commit('notif/setMessage')
   }, 1000)
 }
 
 const handleClose = () => {
   if (clearTimer) clearTimeout(clearTimer)
-  store.commit('setMessage')
+  store.commit('notif/setMessage')
 }
 
 watch(

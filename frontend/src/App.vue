@@ -18,7 +18,7 @@ onMounted(() => { store.dispatch('initialize') })
 <template>
   <Navigation/>
   <RouterView />
-  <FooterV v-if="router.name != 'ask'" />
+  <FooterV v-if="!state.user.logged_user" />
   <Modals />
   <Loading :show="state.loading" />
   <Notification />

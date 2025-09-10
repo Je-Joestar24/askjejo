@@ -36,9 +36,9 @@ const logoutUser = async () => {
     const response = await store.dispatch('logout')
     if (response.success) {
         store.dispatch('initialize')
-        store.commit('setMessage', { message: response.message, type: 'success' })
+        store.commit('notif/setMessage', { message: response.message, type: 'success' })
         router.push({ name: 'home' })
-    } else store.commit('setMessage', { message: response.message, type: 'error' })
+    } else store.commit('notif/setMessage', { message: response.message, type: 'error' })
 
 }
 </script>

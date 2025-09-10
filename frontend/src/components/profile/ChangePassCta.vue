@@ -16,6 +16,6 @@ const store = useStore()
 const state = store.state.profile
 
 const togglePasswordChange = () => {
-    store.dispatch('togglePasswordChange')
+    store.dispatch('profile/togglePasswordChange')
 }
 </script>

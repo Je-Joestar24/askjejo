@@ -34,6 +34,6 @@ const store = useStore()
 const state = store.state.profile
 
 const toggleEdit = () => {
-  store.dispatch('toggleEdit')
+  store.dispatch('profile/toggleEdit')
 }
 </script>

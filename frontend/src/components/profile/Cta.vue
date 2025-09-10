@@ -20,7 +20,7 @@ import { computed } from 'vue'
 const store = useStore()
 const state = store.state.profile
 
-const hasChanges = computed(() => store.getters.hasChanges)
+const hasChanges = computed(() => store.getters['profile/hasChanges'])
 
 const cancelEdit = () => {
     store.dispatch('cancelEdit')

@@ -117,17 +117,17 @@ const signupNow = async () => {
         result.value = res
         if (res.success) {
             await login(signup.value.email, signup.value.password)
-            store.commit('setMessage', { message: res.message, type: 'success' })
+            store.commit('notif/setMessage', { message: res.message, type: 'success' })
             clearForm()
             router.push({ name: 'ask' })
             toggleModal()
         } else {
             error.value = res.message
-            store.commit('setMessage', { message: res.message, type: 'error' })
+            store.commit('notif/setMessage', { message: res.message, type: 'error' })
         }
     } catch (err) {
         console.error('Signup failed:', err)
-        store.commit('setMessage', { message: res.err?.message || 'Something went wrong, please try again.', type: 'error' })
+        store.commit('notif/setMessage', { message: res.err?.message || 'Something went wrong, please try again.', type: 'error' })
     } finally {
         state.loading = false
     }

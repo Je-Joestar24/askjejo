@@ -1,173 +1,41 @@
 import { createStore } from 'vuex'
-import api from '@/config/api'
-import { csrf } from '@/config/api'
+import api, { csrf } from '@/config/api'
+import profile from './modules/profile'
+import user from './modules/user'
+import ask from './modules/ask'
+import notif from './modules/notif'
 
 const store = createStore({
-  state() {
-    return {
-      activeModal: '',
-      profile: {
-        isEditing: false,
-        showPasswordChange: false,
-        profileData: {
-          name: '',
-          email: '',
-        },
-        passwordData: {
-          currentPassword: '',
-          newPassword: '',
-        },
-        originalData: {
-          name: '',
-          email: '',
-        }
-      },
-      user: {
-        logged_user: null,
-        token: ''
-      },
-      ask: {
-        chats: [],
-        search: '',
-        activeChat: { id: null, title: '' },
-        messages: [],
-        message: '',
-        loading: false,
-        response: null,
-      },
-      api: api,
-      loading: false,
-      notif: {
-        type: '',
-        message: '',
-      },
-      routeMessage: ''
-    }
+  modules: {
+    profile,
+    user,
+    ask,
+    notif
   },
-  getters: {
-    hasProfileChanges(state) {
-      return (
-        state.profile.profileData.name !== state.profile.originalData.name ||
-        state.profile.profileData.email !== state.profile.originalData.email
-      )
-    },
-    hasPasswordChanges(state) {
-      return state.profile.showPasswordChange && state.profile.passwordData.newPassword.length > 0
-    },
-    hasChanges(state, getters) {
-      return getters.hasProfileChanges || getters.hasPasswordChanges
-    },
-    filteredChats(state) {
-      if (!state.ask.search.trim()) {
-        return state.ask.chats;
-      }
-
-      const searchTerm = state.ask.search.toLowerCase().trim();
-      return state.ask.chats.filter(chat =>
-        chat.title && chat.title.toLowerCase().includes(searchTerm)
-      );
-    }
+  state: {
+    activeModal: '',
+    api: api,
+    loading: false,
+    routeMessage: ''
   },
   mutations: {
-    setActiveModal(state, active) {
-      state.activeModal = active
-    },
-    togglePasswordChange(state) {
-      state.profile.showPasswordChange = !state.profile.showPasswordChange
-    },
-    toggleEdit(state) {
-      state.profile.isEditing = true
-      state.profile.showPasswordChange = false
-    },
-    resetPasswordData(state) {
-      state.profile.passwordData.currentPassword = ''
-      state.profile.passwordData.newPassword = ''
-    },
-    cancelEdit(state) {
-      state.profile.isEditing = false
-      state.profile.showPasswordChange = false
-
-      if (state.user.logged_user) {
-        state.profile.profileData.name = state.profile.originalData.name
-        state.profile.profileData.email = state.profile.originalData.email
-      }
-    },
-    updateUser(state, user) {
-      Object.assign(state.profile.originalData, state.profile.profileData)
-      localStorage.setItem('user', JSON.stringify(user))
-    },
-    initializeUser(state, user) {
-      if (!user || typeof user !== 'object') return;
-
-      // Destructure only needed properties for better performance
-      const { name, email } = user;
-
-      // Validate required fields exist
-      if (!name || !email) return;
-
-      // Update user state
-      state.user.logged_user = user;
-
-      // Batch profile updates for better performance
-      const profileUpdates = { name, email };
-      Object.assign(state.profile.originalData, profileUpdates);
-      Object.assign(state.profile.profileData, profileUpdates);
-    },
-    userCleanup(state) {
-      const cleanData = { email: "", name: "" }
-      Object.assign(state.profile.originalData, cleanData)
-      Object.assign(state.profile.profileData, cleanData)
-
-      state.user.logged_user = null
-      localStorage.removeItem("user")
-      localStorage.removeItem("token")
-    },
-    setMessage(state, param) {
-      if (!param) {
-        Object.assign(state.notif, { type: '', message: '' })
-        return
-      }
-
-      Object.assign(state.notif, param)
+    setActiveModal(state, modal) {
+      state.activeModal = modal
     },
     setRouteMessage(state, message) {
-      if (!message) state.routeMessage = ''
-      state.routeMessage = message
-    },
-    setChats(state, chats) {
-      state.ask.chats = chats;
-    },
-    setActiveChat(state, chat) {
-      state.ask.activeChat = chat;
-    },
-    setMessages(state, messages) {
-      state.ask.messages = messages;
-    },
-    addMessage(state, message) {
-      state.ask.messages.push(message);
-    },
-    updateChatTitle(state, { chatId, title }) {
-      const chatIndex = state.ask.chats.findIndex(chat => chat.id === chatId);
-      if (chatIndex !== -1) {
-        state.ask.chats[chatIndex].title = title;
-      }
-    },
-    removeChat(state, chatId) {
-      state.ask.chats = state.ask.chats.filter(chat => chat.id !== chatId);
-    },
-    resetActiveChat(state) {
-      state.ask.activeChat = { id: null, title: '' };
-    },
-    clearMessages(state) {
-      state.ask.messages = [];
-    },
-    addNewChat(state, chat) {
-      state.ask.chats.reverse()
-      state.ask.chats.push(chat)
-      state.ask.chats.reverse()
+      state.routeMessage = message || ''
     }
   },
   actions: {
+    async signup({ state }, payload) {
+      try {
+        await csrf()
+        const { data } = await state.api.post('/api/auth/signup', payload)
+        return data
+      } catch (error) {
+        return error?.response?.data ?? { success: false, message: 'Request failed.' }
+      }
+    },
     setActiveModal({ commit }, active) {
       commit('setActiveModal', active)
     },
@@ -230,7 +98,7 @@ const store = createStore({
       } catch (error) {
         console.error('Logout failed:', error)
         delete state.api.defaults.headers.common['Authorization']
-        commit('userCleanup')
+        commit('user/cleanup')
 
         return {
           success: false,
@@ -238,26 +106,10 @@ const store = createStore({
         }
       } finally {
         delete state.api.defaults.headers.common['Authorization']
-        commit('userCleanup')
+        commit('user/cleanup')
         state.loading = false
         return { success: true, message: 'Logout success' }
       }
-    },
-    togglePasswordChange({ commit, state }) {
-      commit('togglePasswordChange')
-      if (!state.profile.showPasswordChange) {
-        commit('resetPasswordData')
-      }
-    },
-    toggleEdit({ commit, state }) {
-      if (state.profile.isEditing) {
-        commit('cancelEdit')
-      } else {
-        commit('toggleEdit')
-      }
-    },
-    cancelEdit({ commit }) {
-      commit('cancelEdit')
     },
     initialize({ commit, state }) {
       try {
@@ -271,7 +123,7 @@ const store = createStore({
         if (userStr) {
           try {
             const user = JSON.parse(userStr)
-            commit('initializeUser', user)
+            commit('profile/initializeUser', user)
           } catch (parseError) {
             console.error('Failed to parse user from localStorage:', parseError)
             // Clear corrupted data
@@ -301,10 +153,10 @@ const store = createStore({
         const updatedUser = response.data.user
 
         // store only id, name, email in localStorage
-        commit('updateUser', updatedUser)
+        commit('profile/updateUser', updatedUser)
         if (response.data.success) {
-          commit('cancelEdit')
-          commit('resetPasswordData')
+          commit('profile/cancelEdit')
+          commit('profile/resetPasswordData')
         }
 
         return {
@@ -333,13 +185,13 @@ const store = createStore({
         });
 
         if (response.data.success) {
-          commit('setChats', response.data.data || []);
+          commit('ask/setChats', response.data.data || []);
         } else {
           console.error('Failed to fetch chat history:', response.data.message);
         }
       } catch (error) {
         console.error('Error fetching chat history:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to load chat history',
           type: 'error'
         });
@@ -356,8 +208,8 @@ const store = createStore({
         const response = await api.post('api/chat/mesages/all', { id: chatId });
 
         if (response.data.success) {
-          commit('setMessages', response.data.messages || []);
-          commit('setActiveChat', {
+          commit('ask/setMessages', response.data.messages || []);
+          commit('ask/setActiveChat', {
             id: response.data.chat.id,
             title: response.data.chat.title
           });
@@ -366,7 +218,7 @@ const store = createStore({
         }
       } catch (error) {
         console.error('Error fetching chat messages:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to load chat messages',
           type: 'error'
         });
@@ -381,21 +233,21 @@ const store = createStore({
         const response = await api.post(`api/chat/update/${chatId}`, { id: chatId, title });
 
         if (response.data.success) {
-          commit('updateChatTitle', { chatId, title });
+          commit('ask/updateChatTitle', { chatId, title });
           state.ask.activeChat.title = title;
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: 'Chat title updated successfully',
             type: 'success'
           });
         } else {
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: response.data.message || 'Failed to update chat title',
             type: 'error'
           });
         }
       } catch (error) {
         console.error('Error updating chat title:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to update chat title',
           type: 'error'
         });
@@ -406,11 +258,11 @@ const store = createStore({
 
     async resetChats({ commit }) {
       try {
-        commit('resetActiveChat');
-        commit('clearMessages');
+        commit('ask/resetActiveChat');
+        commit('ask/clearMessages');
       } catch (error) {
         console.error('Error resetting chats:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to reset chats',
           type: 'error'
         });
@@ -432,7 +284,7 @@ const store = createStore({
           updated_at: new Date().toISOString()
         };
 
-        commit('addMessage', userMessage);
+        commit('ask/addMessage', userMessage);
 
         // Prepare request payload
         const payload = {
@@ -456,18 +308,18 @@ const store = createStore({
             updated_at: response.data.messages.bot.created_at
           };
 
-          commit('addMessage', botMessage);
+          commit('ask/addMessage', botMessage);
 
           // Update chat list if this is a new chat
           if (!(state.ask.activeChat.id && state.ask.activeChat.title)) {
-            commit('addNewChat', {
+            commit('ask/addNewChat', {
               id: response.data.chat_id,
               title: state.ask.message.substring(0, 60) + '...',
               user_id: state.user.logged_user?.id,
               created_at: new Date().toISOString(),
               updated_at: new Date().toISOString()
             });
-            commit('setActiveChat', {
+            commit('ask/setActiveChat', {
               id: response.data.chat_id,
               title: state.ask.message.substring(0, 60) + '...',
             });
@@ -475,19 +327,19 @@ const store = createStore({
             state.ask.message = ''
           }
 
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: 'Message sent successfully',
             type: 'success'
           });
         } else {
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: response.data.message || 'Failed to send message',
             type: 'error'
           });
         }
       } catch (error) {
         console.error('Error sending message:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to send message',
           type: 'error'
         });
@@ -502,24 +354,24 @@ const store = createStore({
         const response = await api.delete(`api/chat/delete/${state.ask.activeChat.id}`, { data: { id: state.ask.activeChat.id } });
 
         if (response.data.success) {
-          commit('removeChat', state.ask.activeChat.id);
+          commit('ask/removeChat', state.ask.activeChat.id);
           if (state.ask.activeChat.id === state.ask.activeChat.id) {
-            commit('resetActiveChat');
-            commit('clearMessages');
+            commit('ask/resetActiveChat');
+            commit('ask/clearMessages');
           }
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: 'Chat deleted successfully',
             type: 'success'
           });
         } else {
-          commit('setMessage', {
+          commit('notif/setMessage', {
             message: response.data.message || 'Failed to delete chat',
             type: 'error'
           });
         }
       } catch (error) {
         console.error('Error deleting chat:', error);
-        commit('setMessage', {
+        commit('notif/setMessage', {
           message: 'Failed to delete chat',
           type: 'error'
         });
